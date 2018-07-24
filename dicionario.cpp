@@ -34,6 +34,7 @@ bool dicionario::importarDicionario(){
     if(arquivo){
       while(getline(arquivo, buffer)){
         tree.inserir(buffer);
+        cout << buffer << endl;
       }
     }
 }
