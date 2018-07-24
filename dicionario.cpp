@@ -43,6 +43,7 @@ bool dicionario::exportarDicionario(){
     string temp;
     ofstream arquivo("dic.txt");
 
+    s = tree.inOrderPublic();
 
     if(arquivo){
         while(!s.empty()){

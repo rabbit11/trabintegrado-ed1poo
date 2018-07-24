@@ -22,6 +22,7 @@ class avlTree{
         ~avlTree(){
             destruirAvl(raiz);
         }
+        stack<string> inOrderPublic();
 
     private:
         void printPreOrder(no *);

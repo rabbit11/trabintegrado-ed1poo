@@ -26,6 +26,10 @@ void avlTree::mostrar(){
     printPreOrder(raiz);
 }
 
+stack<string> avlTree::inOrderPublic(){
+    return inOrder();
+}
+
 //*****************
 //*METODOS PRIVATE*
 //*****************
@@ -194,6 +198,7 @@ void avlTree::destruirAvl(no *raiz){
 
     delete(raiz);
 }
+
 
 stack<string> avlTree::inOrder(){
     no* temp = raiz;
