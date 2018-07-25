@@ -1,5 +1,5 @@
 //Vinicius Brandao Crepschi   RA: 743601
-#include <stack>
+
 #include <iostream>
 #include <string.h>
 #include "avltree.h"
@@ -23,12 +23,21 @@ int avlTree::busca(string& plv){
 void avlTree::mostrar(){
     if(vazia()) return;
 
+    cout << "inorder:" << endl;
+    printInOrder(raiz);
+}
+
+void avlTree::mostrarPre(){
+    if(vazia()) return;
+
+    cout << "preorder" << endl;
     printPreOrder(raiz);
 }
 
 stack<string> avlTree::inOrderPublic(){
     return inOrder();
 }
+
 
 //*****************
 //*METODOS PRIVATE*
@@ -47,72 +56,48 @@ int avlTree::getAltura(no* raiz){
     return raiz->altura;
 }
 
-//Realiza rotação da arvore no caso Esquerda-Esquerda
-no *avlTree::rotacionaEE(no *A){
-    //printf("CASO EE\n");
+//Rotaciona para direita
+no *avlTree::rotacionaSingleRight(no* A){
+    cout << "SingleRight" << endl;
     no *B = A->esq;
     A->esq = B->dir;
     B->dir = A;
 
     //Atualizando alturas
     A->altura = max(getAltura(A->esq), getAltura(A->dir))+1;
-    B->altura = max(getAltura(B->esq), getAltura(B->dir))+1;
+    B->altura = max(getAltura(B->esq), getAltura(A))+1;
 
     return B;
 }
 
-//Realiza rotação da arvore no caso Direita-Direita
-no* avlTree::rotacionaDD(no *A){
-    //printf("CASO DD\n");
+//Rotaciona para a esquerda
+no* avlTree::rotacionaSingleLeft(no* A){
+    cout << "SingleLeft" << endl;
     no *B = A->dir;
     A->dir = B->esq;
     B->esq = A;
 
     //Atualizando alturas
     A->altura = max(getAltura(A->esq), getAltura(A->dir))+1;
-    B->altura = max(getAltura(B->esq), getAltura(B->dir))+1;
+    B->altura = max(getAltura(A->dir), getAltura(A))+1;
 
     return B;
 }
 
-//Realiza rotação da arvore no caso Esquerda-Direita
-no* avlTree::rotacionaED(no *A){
-    //printf("CASO ED\n");
-    no* B = A->esq;
-    no* C = B->dir;
-
-    B->dir = C->esq;
-    C->esq = B;
-    A->esq = C->dir;
-    C->dir = A;
-
-    //Atualizando alturas
-    C->altura = max(getAltura(A->esq), getAltura(A->dir))+1;
-    B->altura = max(getAltura(B->esq), getAltura(B->dir))+1;
-
-    return C;
+//Rotaciona a sub arvore a esquerda e depois rotaciona para a direita
+no* avlTree::rotacionaDoubleRight(no* A){
+    A->esq = rotacionaSingleLeft(A->esq);
+    return rotacionaSingleRight(A);
 }
 
-//Realiza rotação da arvore no caso Direita-Esquerda
-no* avlTree::rotacionaDE(no *A){
-    //printf("CASO DE\n");
-    no* B = A->dir;
-    no* C = B->esq;
-
-    B->esq = C->dir;
-    C->dir = B;
-    A->dir = C->esq;
-    C->esq = A;
-
-    //Atualizando alturas
-    C->altura = max(getAltura(A->esq), getAltura(A->dir))+1;
-    B->altura = max(getAltura(B->esq), getAltura(B->dir))+1;
-
-    return C;
+//Rotaciona a sub arvore a direita e depois rotaciona para a esquerda
+no* avlTree::rotacionaDoubleLeft(no* A){
+    A->dir = rotacionaSingleRight(A->dir);
+    return rotacionaSingleLeft(A);
 }
 
 //Calcula balanceamento de cada no
-int avlTree::getBal(no *raiz){
+int avlTree::getBal(no* raiz){
     if(raiz == NULL)
         return 0;
 
@@ -120,43 +105,45 @@ int avlTree::getBal(no *raiz){
 }
 
 //Inserir privado
-no *avlTree::inserir(no* raiz, string& a){
+no *avlTree::inserir(no* raiz, string &a){
     if(raiz == NULL){
+        cout << "novo no" << endl;
         raiz = new no;
         raiz->palavra = a;
-        raiz->altura = 1;
-        raiz->esq = raiz->dir = NULL;
+        raiz->altura = 0;
+        raiz->esq = NULL;
+        raiz->dir = NULL;
     }
 
-    if(a.compare(raiz->palavra) < 0){
+    else if(a.compare(raiz->palavra) < 0){
+        cout << "desceu esq" << endl;
         raiz->esq = inserir(raiz->esq, a);
     }
 
     else if(a.compare(raiz->palavra) > 0){
+        cout << "desceu dir" << endl;
         raiz->dir = inserir(raiz->dir, a);
     }
 
     //fator de balanceamento
     int bal = getBal(raiz);
 
-    //Caso Esquerda-Esquerda
-    if(bal > 1 && (a.compare(raiz->dir->palavra) < 0)){
-        return rotacionaEE(raiz);
+    if(bal == 2){
+        //Caso EE
+        if(a.compare(raiz->esq->palavra) < 0)
+            raiz = rotacionaSingleRight(raiz);
+        //Caso ED
+        else
+            raiz = rotacionaDoubleRight(raiz);
     }
 
-    //Caso Direita-Direita
-    if(bal < -1 && (a.compare(raiz->dir->palavra) > 0)){
-        return rotacionaDD(raiz);
-    }
-
-    //Caso Esquerda-Direita
-    if(bal > 1 && (a.compare(raiz->esq->palavra) > 0)){
-        return rotacionaED(raiz);
-    }
-
-    //Caso Direita-Esquerda
-    if(bal < -1 && (a.compare(raiz->dir->palavra) < 0)){
-        return rotacionaDE(raiz);
+    else if(bal == -2){
+        //Caso DD
+        if(a.compare(raiz->dir->palavra) > 0)
+            raiz = rotacionaSingleLeft(raiz);
+        //Caso DE
+        else
+            raiz = rotacionaDoubleLeft(raiz);
     }
 
     //Atualiza altura antes de retornar
@@ -179,6 +166,15 @@ int avlTree::busca(no *raiz, string& a){
 }
 
 //Imprime a árvore em pre order
+void avlTree::printInOrder(no *raiz){
+    if(raiz == NULL)
+        return;
+
+    printInOrder(raiz->esq);
+    cout << raiz->palavra << endl;
+    printInOrder(raiz->dir);
+}
+
 void avlTree::printPreOrder(no *raiz){
     if(raiz == NULL)
         return;
@@ -197,8 +193,8 @@ void avlTree::destruirAvl(no *raiz){
     destruirAvl(raiz->dir);
 
     delete(raiz);
+    raiz = NULL;
 }
-
 
 stack<string> avlTree::inOrder(){
     no* temp = raiz;

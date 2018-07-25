@@ -1,6 +1,7 @@
 #include <iostream>
-#include <stack>
 #include <string>
+#include <stack>
+#include <fstream>
 using namespace std;
 
 struct no{
@@ -16,6 +17,8 @@ class avlTree{
         void inserir(string&);
         int busca(string&);
         void mostrar();
+        void mostrarPre();
+        bool importarDic();
         avlTree(){
             raiz = NULL;
         }
@@ -25,18 +28,18 @@ class avlTree{
         stack<string> inOrderPublic();
 
     private:
-        void printPreOrder(no *);
+        void printPreOrder(no*);
+        void printInOrder(no*);
         int busca(no*, string&);
         no *inserir(no*, string&);
-        int getBal(no *);
-        void destruirAvl(no *);
-        no *rotacionaDE(no *);
-        no *rotacionaED(no *);
-        no *rotacionaEE(no *);
-        no *rotacionaDD(no *);
-        int getAltura(no *);
+        int getBal(no*);
+        void destruirAvl(no*);
+        no *rotacionaDoubleRight(no*);
+        no *rotacionaDoubleLeft(no*);
+        no *rotacionaSingleRight(no*);
+        no *rotacionaSingleLeft(no*);
+        int getAltura(no*);
         int max(int, int);
         no *raiz;
         stack<string> inOrder();
-
 };
