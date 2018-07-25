@@ -1,9 +1,12 @@
 //Vinicius Brandao Crepschi   RA: 743601
 #include <iostream>
 #include <string>
+#include <locale.h>
 #include "dicionario.h"
 
 int main(){
+    setlocale(LC_ALL, "Portuguese");
+
     avlTree t;
     dicionario dic;
     // string plv1 = "ab";
@@ -22,9 +25,14 @@ int main(){
     // t.inserir(plv4);
     // t.inserir(plv5);
     // t.inserir(plv6);
-    // t.inserir(plv7);
     //
-    // t.mostrar();
+    // for(int i = 0; i < 50; i++){
+    //     plv7 = plv7 + "a";
+    //     t.inserir(plv7);
+    // }
+
+    //dic.printarvore();
+    //t.mostrar();
 
     return 0;
 }

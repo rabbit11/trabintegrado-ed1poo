@@ -49,7 +49,7 @@ int avlTree::getAltura(no* raiz){
 
 //Realiza rotação da arvore no caso Esquerda-Esquerda
 no *avlTree::rotacionaEE(no *A){
-    printf("CASO EE\n");
+    //printf("CASO EE\n");
     no *B = A->esq;
     A->esq = B->dir;
     B->dir = A;
@@ -63,7 +63,7 @@ no *avlTree::rotacionaEE(no *A){
 
 //Realiza rotação da arvore no caso Direita-Direita
 no* avlTree::rotacionaDD(no *A){
-    printf("CASO DD\n");
+    //printf("CASO DD\n");
     no *B = A->dir;
     A->dir = B->esq;
     B->esq = A;
@@ -77,7 +77,7 @@ no* avlTree::rotacionaDD(no *A){
 
 //Realiza rotação da arvore no caso Esquerda-Direita
 no* avlTree::rotacionaED(no *A){
-    printf("CASO ED\n");
+    //printf("CASO ED\n");
     no* B = A->esq;
     no* C = B->dir;
 
@@ -95,7 +95,7 @@ no* avlTree::rotacionaED(no *A){
 
 //Realiza rotação da arvore no caso Direita-Esquerda
 no* avlTree::rotacionaDE(no *A){
-    printf("CASO DE\n");
+    //printf("CASO DE\n");
     no* B = A->dir;
     no* C = B->esq;
 

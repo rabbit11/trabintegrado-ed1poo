@@ -2,6 +2,7 @@
 #include <stack>
 #include "avltree.h"
 
+
 using namespace std;
 
 class dicionario{
@@ -11,6 +12,7 @@ class dicionario{
     public:
         dicionario();
         ~dicionario();
+        void printarvore();
         //bool consulta(palavra p);
         //bool inserirPalavra(palavra p);
         bool importarDicionario();

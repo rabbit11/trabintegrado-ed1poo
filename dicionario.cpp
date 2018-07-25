@@ -3,7 +3,10 @@
 #include <string>
 #include "dicionario.h"
 #include <fstream>
+
 using namespace std;
+
+
 
 dicionario::dicionario(){
   importarDicionario();
@@ -14,6 +17,9 @@ dicionario::~dicionario(){
     //metodo destruirAvl???
 }
 
+void dicionario::printarvore(){
+    tree.mostrar();
+}
 
 //função que retorna 0 para palavra não encontrada e 1 para palavra encontrada
 // bool dicionario::consulta(palavra p){
@@ -29,14 +35,25 @@ dicionario::~dicionario(){
 //retorna 1 para insercao bem sucedida e 0 para insercao nao realizada
 bool dicionario::importarDicionario(){
     string buffer;
-    ifstream arquivo("dic.txt");
+    ifstream arquivo;
+    arquivo.open("dic.txt");
+
+    // while(!arquivo.eof()){
+    //     getline(arquivo, buffer);
+    //     tree.inserir(buffer);
+    //     cout << buffer << endl;
+    //   }
+    //
 
     if(arquivo){
-      while(getline(arquivo, buffer)){
-        tree.inserir(buffer);
-        cout << buffer << endl;
-      }
+        while(arquivo >> buffer){
+            //tree.inserir(buffer);
+            cout << buffer << endl;
+        }
+        arquivo.close();
     }
+
+    return 1;
 }
 
 bool dicionario::exportarDicionario(){
