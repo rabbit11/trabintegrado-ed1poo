@@ -1,11 +1,13 @@
 //Vinicius Brandao Crepschi   RA: 743601
-#include "avltree.h"
+#include "dicionario.h"
 #include <iostream>
 #include <string>
 
 int main(){
-    avlTree t;
-    int b = 0;
+    dicionario d;
+    d.printarvore();
+    // avlTree t;
+    // int b = 0;
     // string buffer;
     // ifstream arquivo("dic.txt");
     //
@@ -14,18 +16,6 @@ int main(){
     //         t.inserir(buffer);
     //     }
     // }
-
-    for(int i = 0; i < 10; i++){
-        string a;
-        cin >> a;
-        t.inserir(a);
-        cout << "Mostrar? ";
-        cin >> b;
-        if(b){
-            t.mostrar();
-            t.mostrarPre();
-        }
-    }
 
     // string plv1 = "the";
     // string plv2 = "of";   //Testando insercao manual
@@ -45,7 +35,7 @@ int main(){
     // t.inserir(plv6);
     // t.inserir(plv7);
 
-    t.mostrar();
+    //t.mostrar();
 
     return 0;
 }

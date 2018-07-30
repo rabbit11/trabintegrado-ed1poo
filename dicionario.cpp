@@ -7,67 +7,82 @@
 using namespace std;
 
 
-
+//construtor default da classe dicionario, que inicializa a variável "mudou"
+//e importa um dicionario de um arquivo .txt
 dicionario::dicionario(){
-  importarDicionario();
+    mudou = false;
+    importarDicionario();
 }
 
+//destrutor da classe dicionario, que caso o dicionário tenha sido alterado,
+//chama a função exportar dicinário para que novas palavras inseridas pelo usuário
+//sejam salvas no arquivo .txt
 dicionario::~dicionario(){
     exportarDicionario();
-    //metodo destruirAvl???
 }
 
+//função utilizada para que pudéssemos checar se todas as palavras foram importadas
+//para a árvore corretamente
 void dicionario::printarvore(){
     tree.mostrar();
 }
 
-//função que retorna 0 para palavra não encontrada e 1 para palavra encontrada
-// bool dicionario::consulta(palavra p){
-//     return tree.busca(p.word);
-// }
-//
-// //função que retorna 1 para palavra inserida com sucesso e 0 para palavra não inserida
-// bool dicionario::inserirPalavra(palavra p){
-//     return tree.inserir(p.word)
-// }
+//função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
+//retorna false para palavra não encontrada e true para palavra encontrada
+bool dicionario::consulta(string& p){
+    return tree.busca(p);
+}
+
+//função que permite ao usuário inserir uma nova palavra no dicionário
+void dicionario::inserirPalavra(string& p){
+    mudou = true;
+    return tree.inserir(p);
+}
 
 //funçao que carrega dicionario a partir de um arquivo .txt e o insere na árvore
-//retorna 1 para insercao bem sucedida e 0 para insercao nao realizada
-bool dicionario::importarDicionario(){
+void dicionario::importarDicionario(){
     string buffer;
     ifstream arquivo;
     arquivo.open("dic.txt");
 
-    // while(!arquivo.eof()){
-    //     getline(arquivo, buffer);
-    //     tree.inserir(buffer);
-    //     cout << buffer << endl;
-    //   }
-    //
+    while(!arquivo.eof()){
+        //getline(arquivo, buffer);
+        arquivo >> buffer;
+        //cout << buffer << endl;
+        tree.inserir(buffer);
+      }
 
-    if(arquivo){
-        while(arquivo >> buffer){
-            //tree.inserir(buffer);
-            cout << buffer << endl;
-        }
-        arquivo.close();
-    }
+    // if(arquivo){
+    //     while(arquivo >> buffer){
+    //         tree.inserir(buffer);
+    //         //cout << buffer << endl;
+    //     }
+    //     arquivo.close();
+    // }
 
-    return 1;
+    arquivo.close();
+
+    return;
 }
 
-bool dicionario::exportarDicionario(){
-    stack <string>s;
-    string temp;
-    ofstream arquivo("dic.txt");
+void dicionario::exportarDicionario(){
 
-    s = tree.inOrderPublic();
+    //verifica se alguma alteraçao foi feita no dicionario, caso alguma alteração tenha sido feita
+    //exportamos o novo dicionario para "dic.txt", do contrario mantemos como este estava antes
+    if(mudou == true){
+        stack <string>s;
+        string temp;
+        ofstream arquivo;
+        arquivo.open("dic.txt");
 
-    if(arquivo){
-        while(!s.empty()){
-            temp = s.top();
-            arquivo << temp << endl;
-            s.pop();
+        s = tree.inOrderPublic();
+
+        if(arquivo){
+            while(!s.empty()){
+                temp = s.top();
+                arquivo << temp << endl;
+                s.pop();
+            }
         }
     }
 }

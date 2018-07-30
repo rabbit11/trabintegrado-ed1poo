@@ -9,14 +9,15 @@ class dicionario{
     private:
         avlTree tree;
         //stack <palavra>semelhante;
+        bool mudou;
     public:
         dicionario();
         ~dicionario();
         void printarvore();
-        //bool consulta(palavra p);
-        //bool inserirPalavra(palavra p);
-        bool importarDicionario();
-        bool exportarDicionario();
+        bool consulta(string& p);
+        void inserirPalavra(string& p);
+        void importarDicionario();
+        void exportarDicionario();
         //string palavrasSemelhantes(palavra p);
 
 };

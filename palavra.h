@@ -1,12 +1,19 @@
+#ifndef PALAVRA_H_
+#define PALAVRA_H_
+
 #include <iostream>
 #include <string>
-#include <palavra.h>
 
+using namespace std;
 
-bool Palavra::operator== (Palavra & op2){
-	
-	if(word1 == word2)
-		return true;
-	else 
-		return false;
-}
+class Palavra {
+
+public:
+	Palavra(string palavra = "") : word(palavra) {};
+	bool operator== (Palavra &op2);
+
+private:
+	string word;
+};
+
+#endif

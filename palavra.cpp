@@ -1,12 +1,11 @@
 #include <iostream>
 #include <string>
-#include <palavra.h>
 
+#include "Palavra.h"
 
-bool Palavra::operator== (Palavra & op2){
+bool Palavra::operator== (Palavra &op2) {
 	
-	if(word1 == word2)
+	if(op2.word == word)
 		return true;
-	else 
-		return false;
+	return false;
 }
