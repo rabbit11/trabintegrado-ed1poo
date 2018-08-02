@@ -15,9 +15,6 @@ Dicionario::Dicionario(){
     importarDicionario();
 }
 
-//destrutor da classe Dicionario, que caso o dicionário tenha sido alterado,
-//chama a função exportar dicinário para que novas palavras inseridas pelo usuário
-//sejam salvas no arquivo .txt
 Dicionario::~Dicionario(){
     return;
 }
@@ -34,7 +31,8 @@ bool Dicionario::consulta(Palavra& p){
     return tree.busca(p);
 }
 
-//função que permite ao usuário inserir uma nova palavra no dicionário
+//função que permite ao usuário inserir uma nova palavra na árvore do Dicionario
+//e consequentemente insere no arquivo.txt do Dicionario
 void Dicionario::inserirPalavra(Palavra& p){
     mudou = true;
     tree.inserir(p);
@@ -79,7 +77,7 @@ void Dicionario::exportarDicionario(Palavra& p){
         arquivo.open("dic.txt", ios::app);
 
         if(arquivo.is_open()){
-            arquivo << p.getWord();
+            arquivo << p.getWord() << endl;
         }
         arquivo.close();
     }
