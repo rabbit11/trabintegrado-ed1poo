@@ -20,7 +20,8 @@ class Dicionario{
         void inserirPalavra(Palavra& p);
         void importarDicionario();
         void exportarDicionario(Palavra& p);
-        //string palavrasSemelhantes(palavra p);
+        void buscaSemelhantes(Palavra& p);
+        void printSemelhantes(stack<Palavra>&);
 
 };
 
