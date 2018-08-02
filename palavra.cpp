@@ -32,3 +32,7 @@ void Palavra::setWord(string &p){
 void Palavra::incrementarOcorrencia(){
 	ocorrencias++;
 }
+
+int Palavra::getOcorrencias(){
+	return ocorrencias;
+}
