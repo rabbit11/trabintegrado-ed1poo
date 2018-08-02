@@ -15,14 +15,11 @@ class Corretor{
     private:
         Dicionario dic;
         Texto text;
-        list<Palavra> lista;
+        list<Palavra> erros;
 
     public:
         Corretor();
         ~Corretor();
-    	void salvarTexto();
-        bool consultaDic(Palavra& p);
-        void inserirPalavraDic(Palavra& p);
 
 };
 
