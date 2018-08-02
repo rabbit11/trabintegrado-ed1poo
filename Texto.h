@@ -2,23 +2,23 @@
 #define TEXTO_H_
 
 #include <iostream>
+#include <string>
+#include <list>
 
-#include "Palavra.h"
+#include "palavra.h"
 
 using namespace std;
 
 class Texto {
 
 private:
-	int nPalavras;
-	string arquivo;
-	Palavra palavra[10000];
+	string nomeArquivo;
+	list<Palavra> palavra;
 public:
-	Texto() : arquivo("texto.txt"), nPalavras(0) {};
+	Texto() : nomeArquivo("texto.txt") {};
 	void carregarTexto();
 	void salvarTexto();
-	void alterarPalavra(int indice);
-
+	void alterarPalavra(list<Palavra> :: iterator it);
 };
 
 #endif

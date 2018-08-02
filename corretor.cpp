@@ -29,6 +29,7 @@ void corretor::salvarTexto(){
 
 //chama a funçao consulta da classe dicionario mantendo assim um bom encapsulamento
 bool corretor::consultaDic(palavra& p){
+    
     dic.consulta(p);
 }
 
