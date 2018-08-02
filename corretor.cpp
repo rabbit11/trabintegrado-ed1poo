@@ -19,13 +19,25 @@ void Corretor::salvarTexto(){
 
 //-----------------------chamadas de funçao da classe dicionario-----------------------------------
 
-//chama a funçao consulta da classe dicionario mantendo assim um bom encapsulamento
-bool Corretor::consultaDic(Palavra& p){
-
-    dic.consulta(p);
-}
-
 //chama a funçao inserir Palavra da classe dicionario mantendo assim um bom encapsulamento
 void Corretor::inserirPalavraDic(Palavra& p){
     dic.inserirPalavra(p);
+}
+
+void Corretor::percorrerTexto(){
+    list<Palavra> :: iterator it = text.getPrimeiro();
+    while(!ultimo(it)){
+        if(!dic.consulta(text.getPalavra(it))){
+            cout << text.getPalavra(it) << ": Nao consta no dicionario, inserir? y/n" << endl;
+            char sn;
+            cin >> sn;
+            if(sn == 'y')
+                dic.inserirPalavra(text.getPalavra(it));
+        }
+        it.getProx();
+    }
+}
+
+bool Corretor::textoVazio(){
+
 }

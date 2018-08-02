@@ -7,7 +7,7 @@
 //****************
 
 //Sobrecarga do operador ==
-bool Palavra::operator== (Palavra &op2) {
+bool Palavra::operator== (Palavra &op2){
 
 	if(op2.word == word)
 		return true;
@@ -27,4 +27,8 @@ string Palavra::getWord(){
 //Altera o valor do atributo string word
 void Palavra::setWord(string &p){
 	word = p;
+}
+
+void Palavra::incrementarOcorrencia(){
+	ocorrencias++;
 }

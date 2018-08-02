@@ -17,6 +17,8 @@ public:
 
 private:
 	string word;
+	int ocorrencias;
+	void incrementarOcorrencia();
 };
 
 #endif
