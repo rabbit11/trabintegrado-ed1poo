@@ -3,7 +3,9 @@
 #include <iostream>
 #include <string.h>
 #include "avltree.h"
+#include <stack>
 #include "palavra.h"
+using namespace std;
 
 //****************
 //*METODOS PUBLIC*
@@ -19,6 +21,10 @@ void AvlTree::inserir(Palavra& plv){
 
 int AvlTree::busca(Palavra& plv){
     return busca(raiz, plv);
+}
+
+int AvlTree::busca(Palavra& plv, stack<Palavra>& semelhante){
+    return busca(raiz, plv, semelhante);
 }
 
 void AvlTree::mostrar(){
@@ -161,6 +167,29 @@ int AvlTree::busca(no *raiz, Palavra& a){
             return 1;
     }
     return 0;
+}
+
+//Busca privado sobrecarregado
+int busca(no* raiz, Palavra& p, stack<Palavra>& semelhante){
+    if(!raiz){
+        return 0;
+    }else{
+        string first_second = p.getWord();
+        first_second = first_second.substr(0,2);
+        Palavra aux(first_second);
+        no* temp = raiz;
+
+        while(temp){
+            if(first_second == temp->palavra.getWord().substr(0,2)){
+                semelhante.push(temp->palavra);
+            }else if(p.compara(raiz->palavra) < 0){
+                temp = temp->esq;
+            }else  if(p.compara(raiz->palavra) > 0){
+                temp = temp->dir;
+            }
+        }
+    }
+    return 1;
 }
 
 //Imprime a árvore em pre order
