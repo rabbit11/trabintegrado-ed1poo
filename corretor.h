@@ -1,26 +1,29 @@
+#ifndef CORRETOR_H_
+#define CORRETOR_H_
+
 #include <iostream>
 #include "dicionario.h"
 #include "avltree.h"
 #include "palavra.h"
-#include "Texto.h"
+#include "texto.h"
 #include <list>
 
 using namespace std;
 
 
-class corretor{
+class Corretor{
     private:
-        dicionario dic;
+        Dicionario dic;
         Texto text;
-        list<palavra> lista;
+        list<Palavra> lista;
 
     public:
-        corretor();
-        ~corretor();
-        void alterarPalavraTexto(int indice);
-        void carregarTexto();
+        Corretor();
+        ~Corretor();
     	void salvarTexto();
-        bool consultaDic(palavra& p);
-        void inserirPalavraDic(palavra& p);
+        bool consultaDic(Palavra& p);
+        void inserirPalavraDic(Palavra& p);
 
-}
+};
+
+#endif

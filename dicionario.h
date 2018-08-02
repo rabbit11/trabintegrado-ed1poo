@@ -1,23 +1,27 @@
+#ifndef DICIONARIO_H_
+#define DICIONARIO_H_
 #include <iostream>
 #include <stack>
 #include "avltree.h"
-
+#include "palavra.h"
 
 using namespace std;
 
-class dicionario{
+class Dicionario{
     private:
-        avlTree tree;
+        AvlTree tree;
         //stack <palavra>semelhante;
         bool mudou;
     public:
-        dicionario();
-        ~dicionario();
+        Dicionario();
+        ~Dicionario();
         void printarvore();
-        bool consulta(string& p);
-        void inserirPalavra(string& p);
+        bool consulta(Palavra& p);
+        void inserirPalavra(Palavra& p);
         void importarDicionario();
-        void exportarDicionario();
+        void exportarDicionario(Palavra& p);
         //string palavrasSemelhantes(palavra p);
 
 };
+
+#endif
