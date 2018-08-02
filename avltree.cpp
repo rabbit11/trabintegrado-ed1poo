@@ -148,6 +148,9 @@ no *AvlTree::inserir(no* raiz, Palavra &a){
 
 //Busca privado
 int AvlTree::busca(no *raiz, Palavra& a){
+    if(a == raiz->palavra){
+        return 0;
+    }
     no *temp = raiz;
     while(temp){
         if(a.compara(raiz->palavra) < 0)
