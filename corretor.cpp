@@ -8,36 +8,51 @@ Corretor::~Corretor(){
 // o que colocar aqui?
 }
 
-//-----------------------chamadas de funçao da classe texto---------------------------------------
-
-//chama a funçao alterarPalavra da classe Texto mantendo assim um bom encapsulamento
-
-//chama a funçao salvarTexto da classe Texto mantendo assim um bom encapsulamento
-void Corretor::salvarTexto(){
-    text.carregarTexto();
-}
-
-//-----------------------chamadas de funçao da classe dicionario-----------------------------------
-
-//chama a funçao inserir Palavra da classe dicionario mantendo assim um bom encapsulamento
-void Corretor::inserirPalavraDic(Palavra& p){
-    dic.inserirPalavra(p);
-}
-
-void Corretor::percorrerTexto(){
-    list<Palavra> :: iterator it = text.getPrimeiro();
-    while(!ultimo(it)){
-        if(!dic.consulta(text.getPalavra(it))){
-            cout << text.getPalavra(it) << ": Nao consta no dicionario, inserir? y/n" << endl;
-            char sn;
-            cin >> sn;
-            if(sn == 'y')
-                dic.inserirPalavra(text.getPalavra(it));
+void Corretor::verificarTexto(){
+    list<Palavra> :: iterator it;
+    it = text.getPrimeiro();
+    while(!text.ultimo(it)){
+        if(!dic.consulta(getPalavra(it))){
+            erros.push_front(getPalavra(it));
         }
-        it.getProx();
+        text.getProximo(it);
     }
 }
 
-bool Corretor::textoVazio(){
+bool Corretor::getErros(){
+    return erros.empty();
+}
 
+void Corretor::exibeErros(){
+    list<Palavra> :: iterator it;
+    for(it = erros.begin(); it != erros.end(); it++){
+        cout << erros.front().getWord() << endl;
+    }
+}
+
+void Corretor::tratarErros(){
+    list<Palavra> :: iterator it;
+    int opc;
+    for(it = erros.begin(); it != erros.end(); it++){
+        cout << erros.front().getWord() << endl;
+        cout << "1- Adicionar ao dicionario como excessao" << endl;
+        cout << "2- Listar sugestoes do dicionario" << endl;
+        cout << "3- Corrigir manualmente" << endl;
+        cout << "4- Ignorar erro" << endl;
+        cin >> opc;
+
+        switch(opc){
+            case 1:
+                dic.inserirPalavra(erros.front().getWord());
+                cout << "Palavra inserida com sucesso" << endl;
+                break;
+
+            case 2:
+                dic.buscarSemelhantes(erros.front().getWord());
+                break;
+
+            case 3:
+                string 
+        }
+    }
 }
