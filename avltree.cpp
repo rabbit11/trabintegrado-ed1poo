@@ -90,7 +90,7 @@ no* avlTree::rotacionaDE(no* A){
     return rotacionaEsquerda(A);
 }
 
-//Calcula balanceamento de cada no
+//Calcula balanceamento de cada no: h_esq - h_dir
 int avlTree::getBal(no* raiz){
     if(raiz == NULL)
         return 0;
@@ -108,10 +108,12 @@ no *avlTree::inserir(no* raiz, Palavra &a){
         raiz->dir = NULL;
     }
 
+    //Chamada recursiva pra esquerda se for menor
     else if(a.compara(raiz->palavra) < 0){
         raiz->esq = inserir(raiz->esq, a);
     }
 
+    //Chamada recursiva pra direita se for maior
     else if(a.compara(raiz->palavra) > 0){
         raiz->dir = inserir(raiz->dir, a);
     }
@@ -119,6 +121,7 @@ no *avlTree::inserir(no* raiz, Palavra &a){
     //fator de balanceamento
     int bal = getBal(raiz);
 
+    //Se h_esq - h_dir == 2: Desbalanceamento na esquerda
     if(bal == 2){
         //Caso EE
         if(a.compara(raiz->esq->palavra) < 0)
@@ -128,6 +131,7 @@ no *avlTree::inserir(no* raiz, Palavra &a){
             raiz = rotacionaED(raiz);
     }
 
+    //Se h_esq - h_dir == -2: Desbalanceamento na direita
     else if(bal == -2){
         //Caso DD
         if(a.compara(raiz->dir->palavra) > 0)
@@ -175,7 +179,7 @@ void avlTree::printPreOrder(no *raiz){
     printPreOrder(raiz->dir);
 }
 
-//Desaloca memoria da arvore
+//Desaloca memoria da arvore percorrendo em post-order
 void avlTree::destruirAvl(no *raiz){
     if(raiz == NULL)
         return;
