@@ -9,26 +9,26 @@
 //*METODOS PUBLIC*
 //****************
 
-bool avlTree::vazia(){
+bool AvlTree::vazia(){
     return (raiz == NULL)? true : false;
 }
 
-void avlTree::inserir(Palavra& plv){
+void AvlTree::inserir(Palavra& plv){
     raiz = inserir(raiz, plv);
 }
 
-int avlTree::busca(Palavra& plv){
+int AvlTree::busca(Palavra& plv){
     return busca(raiz, plv);
 }
 
-void avlTree::mostrar(){
+void AvlTree::mostrar(){
     if(vazia()) return;
 
     cout << "inorder:" << endl;
     printInOrder(raiz);
 }
 
-void avlTree::mostrarPre(){
+void AvlTree::mostrarPre(){
     if(vazia()) return;
 
     cout << "preorder" << endl;
@@ -40,12 +40,12 @@ void avlTree::mostrarPre(){
 //*****************
 
 //Retorna maximo entre dois int
-int avlTree::max(int a, int b){
+int AvlTree::max(int a, int b){
     return (a>b)? a : b;
 }
 
 //Retorna atributo altura
-int avlTree::getAltura(no* raiz){
+int AvlTree::getAltura(no* raiz){
     if(raiz == NULL)
         return 0;
 
@@ -53,7 +53,7 @@ int avlTree::getAltura(no* raiz){
 }
 
 //Rotaciona para direita
-no *avlTree::rotacionaDireita(no* A){
+no *AvlTree::rotacionaDireita(no* A){
     no *B = A->esq;
     A->esq = B->dir;
     B->dir = A;
@@ -66,7 +66,7 @@ no *avlTree::rotacionaDireita(no* A){
 }
 
 //Rotaciona para a esquerda
-no* avlTree::rotacionaEsquerda(no* A){
+no* AvlTree::rotacionaEsquerda(no* A){
     no *B = A->dir;
     A->dir = B->esq;
     B->esq = A;
@@ -79,19 +79,19 @@ no* avlTree::rotacionaEsquerda(no* A){
 }
 
 //Rotaciona a sub arvore a esquerda e depois rotaciona para a direita
-no* avlTree::rotacionaED(no* A){
+no* AvlTree::rotacionaED(no* A){
     A->esq = rotacionaEsquerda(A->esq);
     return rotacionaDireita(A);
 }
 
 //Rotaciona a sub arvore a direita e depois rotaciona para a esquerda
-no* avlTree::rotacionaDE(no* A){
+no* AvlTree::rotacionaDE(no* A){
     A->dir = rotacionaDireita(A->dir);
     return rotacionaEsquerda(A);
 }
 
 //Calcula balanceamento de cada no: h_esq - h_dir
-int avlTree::getBal(no* raiz){
+int AvlTree::getBal(no* raiz){
     if(raiz == NULL)
         return 0;
 
@@ -99,7 +99,7 @@ int avlTree::getBal(no* raiz){
 }
 
 //Inserir privado
-no *avlTree::inserir(no* raiz, Palavra &a){
+no *AvlTree::inserir(no* raiz, Palavra &a){
     if(raiz == NULL){
         raiz = new no;
         raiz->palavra = a;
@@ -147,7 +147,7 @@ no *avlTree::inserir(no* raiz, Palavra &a){
 }
 
 //Busca privado
-int avlTree::busca(no *raiz, Palavra& a){
+int AvlTree::busca(no *raiz, Palavra& a){
     no *temp = raiz;
     while(temp){
         if(a.compara(raiz->palavra) < 0)
@@ -161,7 +161,7 @@ int avlTree::busca(no *raiz, Palavra& a){
 }
 
 //Imprime a árvore em pre order
-void avlTree::printInOrder(no *raiz){
+void AvlTree::printInOrder(no *raiz){
     if(raiz == NULL)
         return;
 
@@ -170,7 +170,7 @@ void avlTree::printInOrder(no *raiz){
     printInOrder(raiz->dir);
 }
 
-void avlTree::printPreOrder(no *raiz){
+void AvlTree::printPreOrder(no *raiz){
     if(raiz == NULL)
         return;
 
@@ -180,7 +180,7 @@ void avlTree::printPreOrder(no *raiz){
 }
 
 //Desaloca memoria da arvore percorrendo em post-order
-void avlTree::destruirAvl(no *raiz){
+void AvlTree::destruirAvl(no *raiz){
     if(raiz == NULL)
         return;
 

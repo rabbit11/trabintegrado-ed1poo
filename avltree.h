@@ -1,3 +1,5 @@
+#ifndef AVLTREE_H_
+#define AVLTREE_H_
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -11,17 +13,17 @@ struct no{
     struct no* dir;
 };
 
-class avlTree{
+class AvlTree{
     public:
         bool vazia();
         void inserir(Palavra&);
         int busca(Palavra&);
         void mostrar();
         void mostrarPre();
-        avlTree(){
+        AvlTree(){
             raiz = NULL;
         }
-        ~avlTree(){
+        ~AvlTree(){
             destruirAvl(raiz);
         }
 
@@ -40,3 +42,5 @@ class avlTree{
         int max(int, int);
         no *raiz;
 };
+
+#endif

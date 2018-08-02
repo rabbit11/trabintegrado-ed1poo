@@ -1,39 +1,31 @@
 #include "corretor.h"
 
-corretor::corretor(){
+Corretor::Corretor(){
 //o que colocar aqui?
 }
 
-corretor::~corretor(){
+Corretor::~Corretor(){
 // o que colocar aqui?
 }
 
 //-----------------------chamadas de funçao da classe texto---------------------------------------
 
 //chama a funçao alterarPalavra da classe Texto mantendo assim um bom encapsulamento
-void corretor::alterarPalavraTexto(int indice){
-    text.alterarPalavra(indice);
-}
-
-//chama a funçao carregarTexto da classe Texto mantendo assim um bom encapsulamento
-void corretor::carregarTexto(){
-    text.carregarTexto();
-}
 
 //chama a funçao salvarTexto da classe Texto mantendo assim um bom encapsulamento
-void corretor::salvarTexto(){
+void Corretor::salvarTexto(){
     text.carregarTexto();
 }
 
 //-----------------------chamadas de funçao da classe dicionario-----------------------------------
 
 //chama a funçao consulta da classe dicionario mantendo assim um bom encapsulamento
-bool corretor::consultaDic(palavra& p){
-    
+bool Corretor::consultaDic(Palavra& p){
+
     dic.consulta(p);
 }
 
-//chama a funçao inserir palavra da classe dicionario mantendo assim um bom encapsulamento
-void corretor::inserirPalavraDic(palavra& p){
+//chama a funçao inserir Palavra da classe dicionario mantendo assim um bom encapsulamento
+void Corretor::inserirPalavraDic(Palavra& p){
     dic.inserirPalavra(p);
 }
