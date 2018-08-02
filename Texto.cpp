@@ -1,28 +1,31 @@
+
 #include "Texto.h"
-#include "Palavra.h"
+#include "palavra.h"
 
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iterator>
+#include <list>
 
 using namespace std;
 
 void Texto::carregarTexto() {
-    string buffer;
+    string word;
 
-    string name;
-    cin >> name;
-    name += ".txt";
+    cout << "Insira o nome do arquivo a ser carregado (sem a extensao)" << endl;
+    string filename;
+    cin >> filename;
+    filename += ".txt";
 
-    ifstream arquivo(name);
+    ifstream arquivo;
+    arquivo.open(filename.c_str(), ios::in);
+    nomeArquivo = filename;
 
     if(arquivo.is_open()) {
-    	int j = 0;
-    	while (arquivo >> buffer) {
-	      palavra[j] = buffer;
-	      j++;
-	    } 
-		nPalavras = j;
+    	while (arquivo >> word) {
+	      push_front(word);
+	    }
 		arquivo.close();
     }
 
@@ -30,25 +33,29 @@ void Texto::carregarTexto() {
 }
 
 void Texto::salvarTexto() {
-    string name;
-    cin >> name;
-    name += ".txt";
-    ofstream arquivo(name);
+    string filename;
+    cout << "Insira o nome do arquivo a ser salvo (sem a extensao)" << endl;
+    cin >> filename;
+    filename += ".txt";
+    ofstream arquivo;
+    arquivo.open(filename.c_str(), ios::out | ios::app);
 
     if(arquivo.is_open()) {
-    	for(int i = 0; i < nPalavras; i++) {
-        	arquivo << palavra[i] << " ";
+        list<Palavra> :: iterator it;
+        for (it = palavra.begin(); it != palavra.end(); it++) {
+            arquivo << *it;
         }
     }
 
     else throw "Nao foi possivel salvar o arquivo";
 }
 
-void Texto::alterarPalavra(int indice) {
+void Texto::alterarPalavra(list<Palavra> :: iterator it) {
 
 	string s;
-	cout << "Digite o que sera alterado" << endl;
+	cout << "Digite a nova palavra" << endl;
 	cin >> s;
-	palavra[indice] = s;
+    Palavra p(s);
+	palavra.insert(it, s);
 
 }
