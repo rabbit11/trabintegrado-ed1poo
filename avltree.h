@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include <stack>
 #include <fstream>
+#include "palavra.h"
 using namespace std;
 
 struct no{
-    string palavra;
+    Palavra palavra;
     int altura;
     struct no* esq;
     struct no* dir;
@@ -13,33 +13,30 @@ struct no{
 
 class avlTree{
     public:
-        int vazia();
-        void inserir(string&);
-        int busca(string&);
+        bool vazia();
+        void inserir(Palavra&);
+        int busca(Palavra&);
         void mostrar();
         void mostrarPre();
-        bool importarDic();
         avlTree(){
             raiz = NULL;
         }
         ~avlTree(){
             destruirAvl(raiz);
         }
-        stack<string> inOrderPublic();
 
     private:
         void printPreOrder(no*);
         void printInOrder(no*);
-        int busca(no*, string&);
-        no *inserir(no*, string&);
+        int busca(no*, Palavra&);
+        no *inserir(no*, Palavra&);
         int getBal(no*);
         void destruirAvl(no*);
-        no *rotacionaDoubleRight(no*);
-        no *rotacionaDoubleLeft(no*);
-        no *rotacionaSingleRight(no*);
-        no *rotacionaSingleLeft(no*);
+        no *rotacionaED(no*);
+        no *rotacionaDE(no*);
+        no *rotacionaDireita(no*);
+        no *rotacionaEsquerda(no*);
         int getAltura(no*);
         int max(int, int);
         no *raiz;
-        stack<string> inOrder();
 };

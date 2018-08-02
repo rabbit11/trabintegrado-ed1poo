@@ -3,41 +3,37 @@
 #include <iostream>
 #include <string.h>
 #include "avltree.h"
+#include "palavra.h"
 
 //****************
 //*METODOS PUBLIC*
 //****************
 
-int avlTree::vazia(){
-    return (raiz == NULL)? 1 : 0;
+bool avlTree::vazia(){
+    return (raiz == NULL)? true : false;
 }
 
-void avlTree::inserir(string& plv){
+void avlTree::inserir(Palavra& plv){
     raiz = inserir(raiz, plv);
 }
 
-int avlTree::busca(string& plv){
+int avlTree::busca(Palavra& plv){
     return busca(raiz, plv);
 }
 
 void avlTree::mostrar(){
     if(vazia()) return;
 
-    //cout << "inorder:" << endl;
+    cout << "inorder:" << endl;
     printInOrder(raiz);
 }
 
 void avlTree::mostrarPre(){
     if(vazia()) return;
 
-    //cout << "preorder" << endl;
+    cout << "preorder" << endl;
     printPreOrder(raiz);
 }
-
-stack<string> avlTree::inOrderPublic(){
-    return inOrder();
-}
-
 
 //*****************
 //*METODOS PRIVATE*
@@ -57,8 +53,7 @@ int avlTree::getAltura(no* raiz){
 }
 
 //Rotaciona para direita
-no *avlTree::rotacionaSingleRight(no* A){
-    //cout << "SingleRight" << endl;
+no *avlTree::rotacionaDireita(no* A){
     no *B = A->esq;
     A->esq = B->dir;
     B->dir = A;
@@ -71,8 +66,7 @@ no *avlTree::rotacionaSingleRight(no* A){
 }
 
 //Rotaciona para a esquerda
-no* avlTree::rotacionaSingleLeft(no* A){
-    //cout << "SingleLeft" << endl;
+no* avlTree::rotacionaEsquerda(no* A){
     no *B = A->dir;
     A->dir = B->esq;
     B->esq = A;
@@ -85,15 +79,15 @@ no* avlTree::rotacionaSingleLeft(no* A){
 }
 
 //Rotaciona a sub arvore a esquerda e depois rotaciona para a direita
-no* avlTree::rotacionaDoubleRight(no* A){
-    A->esq = rotacionaSingleLeft(A->esq);
-    return rotacionaSingleRight(A);
+no* avlTree::rotacionaED(no* A){
+    A->esq = rotacionaEsquerda(A->esq);
+    return rotacionaDireita(A);
 }
 
 //Rotaciona a sub arvore a direita e depois rotaciona para a esquerda
-no* avlTree::rotacionaDoubleLeft(no* A){
-    A->dir = rotacionaSingleRight(A->dir);
-    return rotacionaSingleLeft(A);
+no* avlTree::rotacionaDE(no* A){
+    A->dir = rotacionaDireita(A->dir);
+    return rotacionaEsquerda(A);
 }
 
 //Calcula balanceamento de cada no
@@ -105,9 +99,8 @@ int avlTree::getBal(no* raiz){
 }
 
 //Inserir privado
-no *avlTree::inserir(no* raiz, string &a){
+no *avlTree::inserir(no* raiz, Palavra &a){
     if(raiz == NULL){
-        //cout << "novo no" << endl;
         raiz = new no;
         raiz->palavra = a;
         raiz->altura = 0;
@@ -115,13 +108,11 @@ no *avlTree::inserir(no* raiz, string &a){
         raiz->dir = NULL;
     }
 
-    else if(a.compare(raiz->palavra) < 0){
-        //cout << "desceu esq" << endl;
+    else if(a.compara(raiz->palavra) < 0){
         raiz->esq = inserir(raiz->esq, a);
     }
 
-    else if(a.compare(raiz->palavra) > 0){
-        //cout << "desceu dir" << endl;
+    else if(a.compara(raiz->palavra) > 0){
         raiz->dir = inserir(raiz->dir, a);
     }
 
@@ -130,20 +121,20 @@ no *avlTree::inserir(no* raiz, string &a){
 
     if(bal == 2){
         //Caso EE
-        if(a.compare(raiz->esq->palavra) < 0)
-            raiz = rotacionaSingleRight(raiz);
+        if(a.compara(raiz->esq->palavra) < 0)
+            raiz = rotacionaDireita(raiz);
         //Caso ED
         else
-            raiz = rotacionaDoubleRight(raiz);
+            raiz = rotacionaED(raiz);
     }
 
     else if(bal == -2){
         //Caso DD
-        if(a.compare(raiz->dir->palavra) > 0)
-            raiz = rotacionaSingleLeft(raiz);
+        if(a.compara(raiz->dir->palavra) > 0)
+            raiz = rotacionaEsquerda(raiz);
         //Caso DE
         else
-            raiz = rotacionaDoubleLeft(raiz);
+            raiz = rotacionaDE(raiz);
     }
 
     //Atualiza altura antes de retornar
@@ -152,12 +143,12 @@ no *avlTree::inserir(no* raiz, string &a){
 }
 
 //Busca privado
-int avlTree::busca(no *raiz, string& a){
+int avlTree::busca(no *raiz, Palavra& a){
     no *temp = raiz;
     while(temp){
-        if(a.compare(raiz->palavra) < 0)
+        if(a.compara(raiz->palavra) < 0)
             temp = temp->esq;
-        else if(a.compare(raiz->palavra) > 0)
+        else if(a.compara(raiz->palavra) > 0)
             temp = temp->dir;
         else //quando dado == t->item
             return 1;
@@ -171,7 +162,7 @@ void avlTree::printInOrder(no *raiz){
         return;
 
     printInOrder(raiz->esq);
-    cout << raiz->palavra << endl;
+    cout << raiz->palavra.getWord() << endl;
     printInOrder(raiz->dir);
 }
 
@@ -179,7 +170,7 @@ void avlTree::printPreOrder(no *raiz){
     if(raiz == NULL)
         return;
 
-    cout << raiz->palavra << endl;
+    cout << raiz->palavra.getWord() << endl;
     printPreOrder(raiz->esq);
     printPreOrder(raiz->dir);
 }
@@ -194,25 +185,4 @@ void avlTree::destruirAvl(no *raiz){
 
     delete(raiz);
     raiz = NULL;
-}
-
-stack<string> avlTree::inOrder(){
-    no* temp = raiz;
-    stack<string> s;
-    stack<no*> percorre;
-
-    percorre.push(temp);
-    while(!percorre.empty()){
-        temp = percorre.top();
-        s.push(temp->palavra);
-        //cout << temp->palavra;
-        percorre.pop();
-
-        if(temp->esq){
-            percorre.push(temp->esq);
-        }if(temp->dir){
-            percorre.push(temp->dir);
-        }
-    }
-    return s;
 }
