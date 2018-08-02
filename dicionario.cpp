@@ -105,17 +105,13 @@ void Dicionario::exportarDicionario(Palavra& p){
 
 
 //função que busca e retorna uma lista de palavras semelhantes aquela passada como parâmetro
-
 void Dicionario::buscaSemelhantes(Palavra& p){
     if(!tree.vazia()){
         return;
     }else{
         stack<Palavra> semelhante;
-        string aux = p.getWord();
-        aux = aux.substr(0,2);
-        Palavra temp(aux);
-
-        tree.busca(temp, semelhante);
+        tree.busca(p, semelhante);
+        printSemelhantes(semelhante);
     }
     return;
 }

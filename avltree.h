@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <stack>
 #include "palavra.h"
 using namespace std;
 
@@ -18,6 +19,8 @@ class AvlTree{
         bool vazia();
         void inserir(Palavra&);
         int busca(Palavra&);
+        int busca(Palavra& plv, stack<Palavra>& semelhante);
+
         void mostrar();
         void mostrarPre();
         AvlTree(){
@@ -31,6 +34,7 @@ class AvlTree{
         void printPreOrder(no*);
         void printInOrder(no*);
         int busca(no*, Palavra&);
+        int busca(no*, Palavra&, stack<Palavra>&);
         no *inserir(no*, Palavra&);
         int getBal(no*);
         void destruirAvl(no*);
