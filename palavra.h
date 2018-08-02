@@ -19,6 +19,7 @@ private:
 	string word;
 	int ocorrencias;
 	void incrementarOcorrencia();
+	int getOcorrencias();
 };
 
 #endif

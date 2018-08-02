@@ -10,7 +10,6 @@
 
 using namespace std;
 
-
 class Corretor{
     private:
         Dicionario dic;
@@ -20,7 +19,9 @@ class Corretor{
     public:
         Corretor();
         ~Corretor();
-
+        void verificarTexto();
+        bool getErros();
+        void exibeErros();
 };
 
 #endif
