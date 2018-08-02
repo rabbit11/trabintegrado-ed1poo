@@ -10,7 +10,6 @@ using namespace std;
 class Dicionario{
     private:
         AvlTree tree;
-        //stack <palavra>semelhante;
         bool mudou;
     public:
         Dicionario();
