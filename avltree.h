@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <stack>
+#include <deque>
 #include "palavra.h"
 using namespace std;
 
@@ -19,7 +20,7 @@ class AvlTree{
         bool vazia();
         void inserir(Palavra&);
         int busca(Palavra&);
-        int busca(Palavra& plv, stack<Palavra>& semelhante);
+        int busca(Palavra& plv, deque<Palavra>& semelhante);
         stack<Palavra> inOrderPublic();
         void mostrar();
         AvlTree(){
@@ -32,7 +33,7 @@ class AvlTree{
     private:
         void printInOrder(no*);
         int busca(no*, Palavra&);
-        int busca(no*, Palavra&, stack<Palavra>&);
+        int busca(no*, Palavra&, deque<Palavra>&);
         no *inserir(no*, Palavra&);
         int getBal(no*);
         void destruirAvl(no*);

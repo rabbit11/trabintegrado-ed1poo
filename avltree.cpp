@@ -4,6 +4,7 @@
 #include <string.h>
 #include "avltree.h"
 #include <stack>
+#include <deque>
 #include "palavra.h"
 using namespace std;
 
@@ -24,7 +25,7 @@ int AvlTree::busca(Palavra& plv){
     return busca(raiz, plv);
 }
 
-int AvlTree::busca(Palavra& plv, stack<Palavra>& semelhante){
+int AvlTree::busca(Palavra& plv, deque<Palavra>& semelhante){
     return busca(raiz, plv, semelhante);
 }
 
@@ -167,8 +168,8 @@ int AvlTree::busca(no *raiz, Palavra& a){
     return 0;
 }
 
-//Busca privado sobrecarregado
-int AvlTree::busca(no* raiz, Palavra& p, stack<Palavra>& semelhante){
+//Busca privado sobrecarregado para a busca de palavras semelhantes
+int AvlTree::busca(no* raiz, Palavra& p, deque<Palavra>& semelhante){
     if(!raiz){
         return 0;
     }else{
@@ -178,7 +179,7 @@ int AvlTree::busca(no* raiz, Palavra& p, stack<Palavra>& semelhante){
 
         while(temp){
             if(first_second == temp->palavra.getWord().substr(0,2)){
-                semelhante.push(temp->palavra);
+                semelhante.push_front(temp->palavra);
             }else if(p.compara(raiz->palavra) < 0){
                 temp = temp->esq;
             }else  if(p.compara(raiz->palavra) > 0){

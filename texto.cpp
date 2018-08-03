@@ -73,21 +73,26 @@ void Texto::alterarPalavra(Palavra errada, Palavra correta) {
     palavra.insert(it, correta);
 }
 
+//retorna um iterador para o elemento de primeira posição na list
 list<Palavra> :: iterator Texto::getPrimeiro() {
     list<Palavra> :: iterator it = palavraNoSymbol.begin();
     return it;
 }
 
+//avança o iterador 1 posição na list
 void Texto::getProx(list<Palavra> :: iterator it) {
     advance(it, 1);
 }
 
+//retorna true caso o iterador estiver na ultima posição da list
+//e false caso contrario
 bool Texto::ultimo(list<Palavra> :: iterator it) {
     if (it == palavraNoSymbol.end())
         return true;
     return false;
 }
 
+//retorna palavra para qual o iterador da list aponta
 Palavra& Texto::getPalavra(list<Palavra> :: iterator it) {
     return *it;
 }
