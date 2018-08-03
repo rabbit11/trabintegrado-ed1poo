@@ -3,22 +3,19 @@
 
 using namespace std;
 
-Corretor::Corretor(){
-//o que colocar aqui?
-}
-
 Corretor::~Corretor(){
 // o que colocar aqui?
 }
 
 void Corretor::verificarTexto(){
-    list<Palavra> :: iterator it;
-    it = text.getPrimeiro();
-    while(!text.ultimo(it)){
-        if(!dic.consulta(text.getPalavra(it))){
-            erros.push_front(text.getPalavra(it));
+    list<Palavra> :: iterator temp;
+    temp = text.getPrimeiro();
+    cout << (*temp).getWord() << endl;
+    while(!text.ultimo(temp)){
+        if(!dic.consulta(text.getPalavra(temp))){
+            erros.push_front(text.getPalavra(temp));
         }
-        text.getProx(it);
+        text.getProx(temp);
     }
 }
 
@@ -27,43 +24,32 @@ bool Corretor::getErros(){
 }
 
 void Corretor::exibeErros(){
-    list<Palavra> :: iterator it;
-    for(it = erros.begin(); it != erros.end(); it++){
-        cout << it->getWord() << endl;
+    list<Palavra> :: iterator temp;
+    for(temp = erros.begin(); temp != erros.end(); temp++){
+        cout << temp->getWord() << endl;
     }
 }
 
-void Corretor::tratarErros(){
-    list<Palavra> :: iterator it;
-    int opc;
-    string nova;
-    Palavra b(nova);
-    for(it = erros.begin(); it != erros.end(); it++){
-        cout << it->getWord() << endl;
-        cout << "1- Adicionar ao dicionario como excessao" << endl;
-        cout << "2- Listar sugestoes do dicionario" << endl;
-        cout << "3- Corrigir manualmente" << endl;
-        cout << "4- Ignorar erro" << endl;
-        cin >> opc;
+void Corretor::corrigirPalavra(string a, Palavra b){
+    Palavra nova(a);
+    text.alterarPalavra(a, b);
+}
 
-        switch(opc){
-            case 1:
-                dic.inserirPalavra(*it);
-                cout << "Palavra inserida com sucesso" << endl;
-                break;
+Palavra Corretor::erroAtual(){
+    return *it;
+}
 
-            case 2:
-                dic.buscaSemelhantes(*it);
+void Corretor::adicionarEx(Palavra a){
+    dic.inserirPalavra(a);
+}
 
-                break;
+bool Corretor::errosFim(){
+    if(it == erros.end())
+        return true;
+    else
+        return false;
+}
 
-            case 3:
-                cin >> nova;
-                text.alterarPalavra(*it, nova);
-                break;
-
-            case 4:
-                break;
-        }
-    }
+void Corretor::errosProx(){
+    advance(it, 1);
 }

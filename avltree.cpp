@@ -20,6 +20,7 @@ void AvlTree::inserir(Palavra& plv){
 }
 
 int AvlTree::busca(Palavra& plv){
+    cout << "BUSCANDO" << endl;
     return busca(raiz, plv);
 }
 
