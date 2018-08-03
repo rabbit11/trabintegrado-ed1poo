@@ -12,7 +12,7 @@ int main(){
     if(sory == "s"){
         corretor.verificarTexto();
         if(corretor.getErros()){
-            cout << "Erros foram encontrados: " << endl;
+            cout << "Erros foram encontrados nas seguintes palavras: " << endl;
             corretor.exibeErros();
             corretor.tratarErros();
         }

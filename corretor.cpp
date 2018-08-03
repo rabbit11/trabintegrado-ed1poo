@@ -23,13 +23,13 @@ void Corretor::verificarTexto(){
 }
 
 bool Corretor::getErros(){
-    return erros.empty();
+    return (!erros.empty());
 }
 
 void Corretor::exibeErros(){
     list<Palavra> :: iterator it;
     for(it = erros.begin(); it != erros.end(); it++){
-        cout << erros.front().getWord() << endl;
+        cout << it->getWord() << endl;
     }
 }
 
@@ -39,7 +39,7 @@ void Corretor::tratarErros(){
     string nova;
     Palavra b(nova);
     for(it = erros.begin(); it != erros.end(); it++){
-        cout << erros.front().getWord() << endl;
+        cout << it->getWord() << endl;
         cout << "1- Adicionar ao dicionario como excessao" << endl;
         cout << "2- Listar sugestoes do dicionario" << endl;
         cout << "3- Corrigir manualmente" << endl;
@@ -48,12 +48,13 @@ void Corretor::tratarErros(){
 
         switch(opc){
             case 1:
-                dic.inserirPalavra(erros.front());
+                dic.inserirPalavra(*it);
                 cout << "Palavra inserida com sucesso" << endl;
                 break;
 
             case 2:
-                dic.buscaSemelhantes(erros.front());
+                dic.buscaSemelhantes(*it);
+
                 break;
 
             case 3:
