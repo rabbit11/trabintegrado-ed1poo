@@ -20,6 +20,7 @@ class AvlTree{
         void inserir(Palavra&);
         int busca(Palavra&);
         int busca(Palavra& plv, stack<Palavra>& semelhante);
+        stack<Palavra> inOrderPublic();
         void mostrar();
         AvlTree(){
             raiz = NULL;
@@ -42,6 +43,8 @@ class AvlTree{
         int getAltura(no*);
         int max(int, int);
         no *raiz;
+        stack<Palavra> inOrder();
+
 };
 
 #endif

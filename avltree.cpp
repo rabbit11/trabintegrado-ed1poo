@@ -34,6 +34,10 @@ void AvlTree::mostrar(){
     printInOrder(raiz);
 }
 
+stack<Palavra> AvlTree::inOrderPublic(){
+    return inOrder();
+}
+
 //*****************
 //*METODOS PRIVATE*
 //*****************
@@ -163,13 +167,12 @@ int AvlTree::busca(no *raiz, Palavra& a){
 }
 
 //Busca privado sobrecarregado
-int busca(no* raiz, Palavra& p, stack<Palavra>& semelhante){
+int AvlTree::busca(no* raiz, Palavra& p, stack<Palavra>& semelhante){
     if(!raiz){
         return 0;
     }else{
         string first_second = p.getWord();
         first_second = first_second.substr(0,2);
-        Palavra aux(first_second);
         no* temp = raiz;
 
         while(temp){
@@ -205,4 +208,24 @@ void AvlTree::destruirAvl(no *raiz){
 
     delete(raiz);
     raiz = NULL;
+}
+
+stack<Palavra> AvlTree::inOrder(){
+    no* temp = raiz;
+    stack<Palavra> s;
+    stack<no*> percorre;
+
+    percorre.push(temp);
+    while(!percorre.empty()){
+        temp = percorre.top();
+        s.push(temp->palavra);
+        percorre.pop();
+
+        if(temp->esq){
+            percorre.push(temp->esq);
+        }if(temp->dir){
+            percorre.push(temp->dir);
+        }
+    }
+    return s;
 }
