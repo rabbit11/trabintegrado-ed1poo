@@ -59,7 +59,7 @@ void Corretor::tratarErros(){
 
             case 3:
                 cin >> nova;
-                text.alterarPalavra(erros.front(), nova);
+                text.alterarPalavra(*it, nova);
                 break;
 
             case 4:
