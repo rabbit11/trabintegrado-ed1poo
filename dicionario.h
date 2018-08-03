@@ -18,7 +18,7 @@ class Dicionario{
         bool consulta(Palavra& p);
         void inserirPalavra(Palavra& p);
         void importarDicionario();
-        void exportarDicionario(Palavra& p);
+        void exportarDicionario();
         void buscaSemelhantes(Palavra& p);
         void printSemelhantes(stack<Palavra>&);
 
