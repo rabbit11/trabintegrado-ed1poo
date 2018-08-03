@@ -2,8 +2,11 @@
 #define DICIONARIO_H_
 #include <iostream>
 #include <stack>
+#include <iterator>
+#include <deque>
 #include "avltree.h"
 #include "palavra.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -11,7 +14,7 @@ class Dicionario{
     private:
         AvlTree tree;
         bool mudou;
-        stack<Palavra> semelhantes;
+        deque<Palavra> semelhantes;
     public:
         Dicionario();
         ~Dicionario();
@@ -22,6 +25,12 @@ class Dicionario{
         void exportarDicionario();
         void buscaSemelhantes(Palavra& p);
         void printSemelhantes(stack<Palavra>&);
+
+        bool ultimo(deque<Palavra> :: iterator& it);
+        deque<Palavra> :: iterator getPrimeiro();
+        void getProx(deque<Palavra> :: iterator& it);
+        Palavra& getPalavra(deque<Palavra> :: iterator& it);
+
 
 };
 
