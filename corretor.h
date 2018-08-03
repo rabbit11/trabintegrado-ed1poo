@@ -20,6 +20,7 @@ class Corretor{
         Corretor();
         ~Corretor();
         void verificarTexto();
+        void tratarErros();
         bool getErros();
         void exibeErros();
 };
