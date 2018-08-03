@@ -11,6 +11,7 @@ class Dicionario{
     private:
         AvlTree tree;
         bool mudou;
+        stack<Palavra> semelhantes;
     public:
         Dicionario();
         ~Dicionario();
