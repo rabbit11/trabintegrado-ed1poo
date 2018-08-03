@@ -157,7 +157,5 @@ void Dicionario::printSemelhantes(){
         Palavra temp = semelhantes[i];
         string aux = temp.getWord();
         cout << i << "." << aux << endl;
-
->>>>>>> 155ce33ca6c89627ec358fc4733fc604897c093d
     }
 }
