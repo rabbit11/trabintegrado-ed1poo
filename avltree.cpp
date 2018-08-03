@@ -28,13 +28,6 @@ void AvlTree::mostrar(){
     printInOrder(raiz);
 }
 
-void AvlTree::mostrarPre(){
-    if(vazia()) return;
-
-    cout << "preorder" << endl;
-    printPreOrder(raiz);
-}
-
 //*****************
 //*METODOS PRIVATE*
 //*****************
@@ -171,15 +164,6 @@ void AvlTree::printInOrder(no *raiz){
     printInOrder(raiz->esq);
     cout << raiz->palavra.getWord() << endl;
     printInOrder(raiz->dir);
-}
-
-void AvlTree::printPreOrder(no *raiz){
-    if(raiz == NULL)
-        return;
-
-    cout << raiz->palavra.getWord() << endl;
-    printPreOrder(raiz->esq);
-    printPreOrder(raiz->dir);
 }
 
 //Desaloca memoria da arvore percorrendo em post-order

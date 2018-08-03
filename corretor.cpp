@@ -52,7 +52,14 @@ void Corretor::tratarErros(){
                 break;
 
             case 3:
-                string 
+                string a;
+                cin >> a;
+                Palavra b(a);
+                //funcao do natham de procurar a palavra e inserir la;
+                break;
+
+            case 4:
+                break;
         }
     }
 }
