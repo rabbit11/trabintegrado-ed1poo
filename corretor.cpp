@@ -10,12 +10,11 @@ Corretor::~Corretor(){
 void Corretor::verificarTexto(){
     list<Palavra> :: iterator temp;
     temp = text.getPrimeiro();
-    cout << (*temp).getWord() << endl;
     while(!text.ultimo(temp)){
         if(!dic.consulta(text.getPalavra(temp))){
             erros.push_front(text.getPalavra(temp));
         }
-        text.getProx(temp);
+        advance(temp, 1);
     }
 }
 

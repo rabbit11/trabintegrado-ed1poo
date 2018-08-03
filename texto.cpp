@@ -78,9 +78,6 @@ list<Palavra> :: iterator Texto::getPrimeiro() {
     return it;
 }
 
-void Texto::getProx(list<Palavra> :: iterator it) {
-    advance(it, 1);
-}
 
 bool Texto::ultimo(list<Palavra> :: iterator it) {
     if (it == palavraNoSymbol.end())
