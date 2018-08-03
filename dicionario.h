@@ -24,7 +24,7 @@ class Dicionario{
         void importarDicionario();
         void exportarDicionario();
         void buscaSemelhantes(Palavra& p);
-        void printSemelhantes(stack<Palavra>&);
+        void printSemelhantes();
 
         bool ultimo(deque<Palavra> :: iterator& it);
         deque<Palavra> :: iterator getPrimeiro();

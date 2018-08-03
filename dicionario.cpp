@@ -104,10 +104,9 @@ void Dicionario::exportarDicionario(){
     }
 }
 
-
 //função que busca e retorna uma lista de palavras semelhantes aquela passada como parâmetro
 void Dicionario::buscaSemelhantes(Palavra& p){
-    if(!tree.vazia()){
+    if(tree.vazia()){
         return;
     }else{
         tree.busca(p, semelhantes);
@@ -143,10 +142,11 @@ Palavra& Dicionario::getPalavra(deque<Palavra> :: iterator& it){
 }
 
 //imprime lista de palavras semelhantes
-// void Dicionario::printSemelhantes(stack<Palavra>& semelhante){
-//     for(int i = 0;  i < 7 && !semelhante.empty(); i++){
-//         Palavra temp = semelhante.top();
-//         string aux = temp.getWord();
-//         cout << i << "." << aux << endl;
-//     }
-// }
+void Dicionario::printSemelhantes(){
+    for(int i = 0;  i < 7 && !semelhantes.empty(); i++){
+        Palavra temp = semelhantes[i];
+        string aux = temp.getWord();
+        cout << i << "." << aux << endl;
+
+    }
+}
