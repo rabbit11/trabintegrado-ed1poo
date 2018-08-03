@@ -20,10 +20,10 @@ public:
 	void carregarTexto();
 	void salvarTexto();
 	void alterarPalavra(list<Palavra> :: iterator it);
-	list<Palavra> :: iterator getPrimeiro();
-	list<Palavra> :: iterator getProx(list<Palavra> :: iterator it);
+ 	list<Palavra> :: iterator getPrimeiro();
+	void getProx(list<Palavra> :: iterator it);
 	bool ultimo(list<Palavra> :: iterator it);
-	Palavra getPalavra(list<Palavra> :: iterator it);
+	Palavra& getPalavra(list<Palavra> :: iterator it);
 };
 
 #endif
