@@ -22,7 +22,6 @@ public:
 	bool salvarTexto(string arquivo);
 	bool ultimo(list<Palavra> :: iterator it);
 	list<Palavra> :: iterator getPrimeiro();
-	void getProx(list<Palavra> :: iterator it);
 	Palavra& getPalavra(list<Palavra> :: iterator it);
 };
 
