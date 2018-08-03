@@ -79,11 +79,6 @@ list<Palavra> :: iterator Texto::getPrimeiro() {
     return it;
 }
 
-//avança o iterador 1 posição na list
-void Texto::getProx(list<Palavra> :: iterator it) {
-    advance(it, 1);
-}
-
 //retorna true caso o iterador estiver na ultima posição da list
 //e false caso contrario
 bool Texto::ultimo(list<Palavra> :: iterator it) {
