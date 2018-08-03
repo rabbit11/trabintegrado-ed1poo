@@ -36,8 +36,7 @@ bool Texto::carregarTexto() {
             }
             Palavra p(temp);
             palavraNoSymbol.push_back(p);
-    }
-
+        }
         return true;
     }
 
@@ -68,7 +67,7 @@ void Texto::alterarPalavra(Palavra errada, Palavra correta) {
 
     list<Palavra> :: iterator it;
     for (it = palavra.begin(); it != palavra.end(); it++) {
-        if(palavra.front() == errada) 
+        if(palavra.front() == errada)
             break;
     }
     palavra.insert(it, correta);

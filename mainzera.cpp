@@ -5,16 +5,45 @@
 int main(){
     Corretor corretor;
     string sory;
-    cout << "CORRETOR ORTOGRÁFICO HERRAR EH UMANO v2.1" << endl;
-    cout << "Iniciar correção do texto? y/n" << endl;
+    cout << "CORRETOR ORTOGRAFICO HERRAR EH UMANO v2.1" << endl;
+    cout << "Iniciar correcao do texto? y/n" << endl;
     cin >> sory;
 
-    if(sory == "s"){
+    if(sory == "y"){
         corretor.verificarTexto();
         if(corretor.getErros()){
             cout << "Erros foram encontrados nas seguintes palavras: " << endl;
             corretor.exibeErros();
-            corretor.tratarErros();
+            int opc;
+            string nova;
+            while(!corretor.errosFim()){
+                cout << "Erro: " << corretor.erroAtual().getWord() << endl;
+                cout << "1- Adicionar ao dicionario como excessao" << endl;
+                cout << "2- Listar sugestoes do dicionario" << endl;
+                cout << "3- Corrigir manualmente" << endl;
+                cout << "4- Ignorar erro" << endl;
+                cin >> opc;
+
+                switch (opc) {
+                    case 1:
+                        corretor.adicionarEx(corretor.erroAtual());
+                        cout << "Palavra adicionada ao dicionário." << endl;
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    case 3:
+                        cin >> nova;
+                        corretor.corrigirPalavra(nova, corretor.erroAtual());
+                        break;
+
+                    case 4:
+                        break;
+                }
+                corretor.errosProx();
+            }
         }
     }
 

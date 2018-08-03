@@ -65,7 +65,7 @@ void Dicionario::importarDicionario(){
 
     arquivo.close();
 
-    cout << "Dicionário importado com sucesso!" << endl;
+    cout << "Dicionario importado com sucesso!" << endl;
 
     return;
 }

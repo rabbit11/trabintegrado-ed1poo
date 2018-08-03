@@ -15,14 +15,22 @@ class Corretor{
         Dicionario dic;
         Texto text;
         list<Palavra> erros;
+        list<Palavra> :: iterator it;
 
     public:
-        Corretor();
+        Corretor(){
+            it = erros.begin();
+            text.carregarTexto();
+        }
         ~Corretor();
         void verificarTexto();
-        void tratarErros();
         bool getErros();
         void exibeErros();
+        void corrigirPalavra(string a, Palavra);
+        Palavra erroAtual();
+        void adicionarEx(Palavra);
+        bool errosFim();
+        void errosProx();
 };
 
 #endif
