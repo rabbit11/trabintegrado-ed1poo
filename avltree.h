@@ -20,9 +20,7 @@ class AvlTree{
         void inserir(Palavra&);
         int busca(Palavra&);
         int busca(Palavra& plv, stack<Palavra>& semelhante);
-
         void mostrar();
-        void mostrarPre();
         AvlTree(){
             raiz = NULL;
         }
