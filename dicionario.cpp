@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include "avltree.h"
 #include "dicionario.h"
 #include "palavra.h"
 #include <fstream>
@@ -16,6 +17,7 @@ Dicionario::Dicionario(){
 }
 
 Dicionario::~Dicionario(){
+    exportarDicionario();
     return;
 }
 
@@ -36,7 +38,6 @@ bool Dicionario::consulta(Palavra& p){
 void Dicionario::inserirPalavra(Palavra& p){
     mudou = true;
     tree.inserir(p);
-    exportarDicionario(p);
 }
 
 //funçao que carrega Dicionario a partir de um arquivo .txt e o insere na árvore
@@ -71,37 +72,37 @@ void Dicionario::importarDicionario(){
 
 //verifica se alguma alteraçao foi feita no Dicionario, caso alguma alteração tenha sido feita
 //exportamos o novo Dicionario para "dic.txt", do contrario mantemos como este estava antes
-void Dicionario::exportarDicionario(Palavra& p){
-    if(mudou == true){
-        ofstream arquivo;
-        arquivo.open("dic.txt", ios::app);
-
-        if(arquivo.is_open()){
-            arquivo << p.getWord() << endl;
-        }
-        arquivo.close();
-    }
-}
-
-//a versão abaixa exporta o dicionário como um todo
-// void Dicionario::exportarDicionario(){
+// void Dicionario::exportarDicionario(Palavra& p){
 //     if(mudou == true){
-//         stack <string>s;
-//         string temp;
 //         ofstream arquivo;
-//         arquivo.open("dic.txt");
+//         arquivo.open("dic.txt", ios::app);
 //
-//         s = tree.inOrderPublic();
-//
-//         if(arquivo){
-//             while(!s.empty()){
-//                 temp = s.top();
-//                 arquivo << temp << endl;
-//                 s.pop();
-//             }
+//         if(arquivo.is_open()){
+//             arquivo << p.getWord() << endl;
 //         }
+//         arquivo.close();
 //     }
 // }
+
+//a versão abaixa exporta o dicionário como um todo, caso uma alteração no dicionário tenha sido efetuada
+void Dicionario::exportarDicionario(){
+    if(mudou == true){
+        stack <Palavra>s;
+        string temp;
+        ofstream arquivo;
+        arquivo.open("dic.txt");
+
+        s = tree.inOrderPublic();
+
+        if(arquivo){
+            while(!s.empty()){
+                temp = s.top().getWord();
+                arquivo << temp << endl;
+                s.pop();
+            }
+        }
+    }
+}
 
 
 //função que busca e retorna uma lista de palavras semelhantes aquela passada como parâmetro
@@ -116,22 +117,11 @@ void Dicionario::buscaSemelhantes(Palavra& p){
     return;
 }
 
-void printSemelhantes(stack<Palavra>& semelhante){
+//imprime lista de palavras semelhantes
+void Dicionario::printSemelhantes(stack<Palavra>& semelhante){
     for(int i = 0; !semelhante.empty(); i++){
         Palavra temp = semelhante.top();
         string aux = temp.getWord();
         cout << i << "." << aux << endl;
     }
 }
-
-// string palavrasSemelhantes(palavra p){
-//     if(!tree){
-//         return;
-//     }else{
-//         if(p.word.compare(tree.palavra.word) >= -2 && p.word.compare(tree.palavra.word) <= 2){
-//             semelhante.push(tree.palavra);
-//         }else if(p.esq.word.compare(tree.palavra.word) < -2){
-//             //qual criterio usar para decisão de "descer" na árvore
-//         }
-//     }
-// }
