@@ -31,7 +31,6 @@ class AvlTree{
         }
 
     private:
-        void printPreOrder(no*);
         void printInOrder(no*);
         int busca(no*, Palavra&);
         int busca(no*, Palavra&, stack<Palavra>&);

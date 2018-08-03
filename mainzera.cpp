@@ -4,7 +4,6 @@
 
 int main(){
     Corretor corretor;
-    int opc;
     string sory;
     cout << "CORRETOR ORTOGRÁFICO HERRAR EH UMANO v2.1" << endl;
     cout << "Iniciar correção do texto? y/n" << endl;
@@ -19,6 +18,6 @@ int main(){
         }
     }
 
-
+    cout << "Arquivo corrigido exportado. Bye!" << endl;
     return 0;
 }
