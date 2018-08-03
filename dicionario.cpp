@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include "avltree.h"
 #include "dicionario.h"
 #include "palavra.h"
 #include <fstream>
@@ -117,7 +118,7 @@ void Dicionario::buscaSemelhantes(Palavra& p){
 }
 
 //imprime lista de palavras semelhantes
-void printSemelhantes(stack<Palavra>& semelhante){
+void Dicionario::printSemelhantes(stack<Palavra>& semelhante){
     for(int i = 0; !semelhante.empty(); i++){
         Palavra temp = semelhante.top();
         string aux = temp.getWord();
