@@ -1,4 +1,7 @@
 #include "corretor.h"
+#include <string>
+
+using namespace std;
 
 Corretor::Corretor(){
 //o que colocar aqui?
@@ -12,10 +15,10 @@ void Corretor::verificarTexto(){
     list<Palavra> :: iterator it;
     it = text.getPrimeiro();
     while(!text.ultimo(it)){
-        if(!dic.consulta(getPalavra(it))){
-            erros.push_front(getPalavra(it));
+        if(!dic.consulta(text.getPalavra(it))){
+            erros.push_front(text.getPalavra(it));
         }
-        text.getProximo(it);
+        text.getProx(it);
     }
 }
 
@@ -33,6 +36,8 @@ void Corretor::exibeErros(){
 void Corretor::tratarErros(){
     list<Palavra> :: iterator it;
     int opc;
+    string nova;
+    Palavra b(nova);
     for(it = erros.begin(); it != erros.end(); it++){
         cout << erros.front().getWord() << endl;
         cout << "1- Adicionar ao dicionario como excessao" << endl;
@@ -43,19 +48,17 @@ void Corretor::tratarErros(){
 
         switch(opc){
             case 1:
-                dic.inserirPalavra(erros.front().getWord());
+                dic.inserirPalavra(erros.front());
                 cout << "Palavra inserida com sucesso" << endl;
                 break;
 
             case 2:
-                dic.buscarSemelhantes(erros.front().getWord());
+                dic.buscaSemelhantes(erros.front());
                 break;
 
             case 3:
-                string a;
-                cin >> a;
-                Palavra b(a);
-                //funcao do natham de procurar a palavra e inserir la;
+                cin >> nova;
+                text.alterarPalavra(erros.front(), nova);
                 break;
 
             case 4:

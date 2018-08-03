@@ -24,7 +24,7 @@ void Texto::carregarTexto() {
 
     if(arquivo.is_open()) {
         while (arquivo >> plv) {
-            for (int i = 0; i < plv.length(); i++) {
+            for (unsigned i = 0; i < plv.length(); i++) {
                 plv[i] = tolower(plv[i]);
             }
           palavra.push_back(plv);
@@ -34,7 +34,7 @@ void Texto::carregarTexto() {
         list<Palavra> :: iterator it;
         for (it = palavra.begin(); it != palavra.end(); it++) {
             string temp = palavra.front().getWord();
-            for (int i = 0; i < temp.length(); i++) {
+            for (unsigned i = 0; i < temp.length(); i++) {
                 if ( !(temp[i] > 'a' || temp[i] < 'z') ) {
                     temp.erase(remove(temp.begin(), temp.end(), temp[i]), temp.end());
                 }
@@ -78,9 +78,10 @@ void Texto::alterarPalavra(list<Palavra> :: iterator it) {
 
 list<Palavra> :: iterator Texto::getPrimeiro() {
     list<Palavra> :: iterator it = palavraNoSymbol.begin();
+    return it;
 }
 
-list<Palavra> :: iterator Texto::getProx(list<Palavra> :: iterator it) {
+void Texto::getProx(list<Palavra> :: iterator it) {
     advance(it, 1);
 }
 
@@ -90,6 +91,6 @@ bool Texto::ultimo(list<Palavra> :: iterator it) {
     return false;
 }
 
-Palavra Texto::getPalavra(list<Palavra> :: iterator it) {
+Palavra& Texto::getPalavra(list<Palavra> :: iterator it) {
     return *it;
 }
