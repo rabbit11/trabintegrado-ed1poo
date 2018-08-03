@@ -21,6 +21,7 @@ void AvlTree::inserir(Palavra& plv){
 }
 
 int AvlTree::busca(Palavra& plv){
+    //cout << "BUSCANDO" << endl;
     return busca(raiz, plv);
 }
 
@@ -157,10 +158,9 @@ int AvlTree::busca(no *raiz, Palavra& a){
     }
     no *temp = raiz;
     while(temp){
-        if(a.compara(temp->palavra) < 0){
+        if(a.compara(raiz->palavra) < 0)
             temp = temp->esq;
-        }
-        else if(a.compara(temp->palavra) > 0)
+        else if(a.compara(raiz->palavra) > 0)
             temp = temp->dir;
         else //quando dado == t->item
             return 1;
@@ -179,7 +179,6 @@ int AvlTree::busca(no* raiz, Palavra& p, deque<Palavra>& semelhantes){
 
         while(temp){
             if(first_second == temp->palavra.getWord().substr(0,2)){
-                cout << temp->palavra.getWord()<< endl;
                 semelhantes.push_front(temp->palavra);
             }if(p.compara(raiz->palavra) < 0){
                 temp = temp->esq;
