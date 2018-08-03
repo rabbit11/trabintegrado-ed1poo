@@ -143,10 +143,21 @@ Palavra& Dicionario::getPalavra(deque<Palavra> :: iterator& it){
 
 //imprime lista de palavras semelhantes
 void Dicionario::printSemelhantes(){
+<<<<<<< HEAD
+    if(semelhantes.empty()){
+        cout << "Não foram encontradas palavras semelhantes." << endl;
+    }
+    int tamanho = semelhantes.size();
+    for(int i = 0;  i < 7 && i < tamanho; i++){
+        Palavra temp = semelhantes[i];
+        string aux = temp.getWord();
+        cout << i << "." << aux << endl;
+=======
     for(int i = 0;  i < 7 && !semelhantes.empty(); i++){
         Palavra temp = semelhantes[i];
         string aux = temp.getWord();
         cout << i << "." << aux << endl;
 
+>>>>>>> 155ce33ca6c89627ec358fc4733fc604897c093d
     }
 }
