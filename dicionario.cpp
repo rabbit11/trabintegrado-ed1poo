@@ -111,16 +111,15 @@ void Dicionario::buscaSemelhantes(Palavra& p){
         return;
     }else{
         tree.busca(p, semelhantes);
-        //printSemelhantes(semelhantes);
     }
     return;
 }
 
 //imprime lista de palavras semelhantes
-void Dicionario::printSemelhantes(stack<Palavra>& semelhante){
-    for(int i = 0;  i < 7 && !semelhante.empty(); i++){
-        Palavra temp = semelhante.top();
-        string aux = temp.getWord();
-        cout << i << "." << aux << endl;
-    }
-}
+// void Dicionario::printSemelhantes(stack<Palavra>& semelhante){
+//     for(int i = 0;  i < 7 && !semelhante.empty(); i++){
+//         Palavra temp = semelhante.top();
+//         string aux = temp.getWord();
+//         cout << i << "." << aux << endl;
+//     }
+// }
