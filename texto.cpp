@@ -10,70 +10,68 @@
 
 using namespace std;
 
-void Texto::carregarTexto() {
+bool Texto::carregarTexto() {
     string plv;
-
-    cout << "Insira o nome do arquivo a ser carregado (sem a extensao)" << endl;
-    string filename;
-    cin >> filename;
-    filename += ".txt";
 
     ifstream arquivo;
     arquivo.open(filename.c_str(), ios::in);
-    nomeArquivo = filename;
 
     if(arquivo.is_open()) {
         while (arquivo >> plv) {
-            for (unsigned i = 0; i < plv.length(); i++) {
+            for (unsigned int i = 0; i < plv.length(); i++) {
                 plv[i] = tolower(plv[i]);
             }
-          palavra.push_back(plv);
+            Palavra p(plv);
+            palavra.push_back(p);
         }
         arquivo.close();
 
         list<Palavra> :: iterator it;
         for (it = palavra.begin(); it != palavra.end(); it++) {
-            string temp = palavra.front().getWord();
-            for (unsigned i = 0; i < temp.length(); i++) {
-                if ( !(temp[i] > 'a' || temp[i] < 'z') ) {
+            string temp = it->getWord();
+            for (unsigned int i = 0; i < temp.length(); i++) {
+                if ( !(temp[i] >= 'a' && temp[i] <= 'z') ) {
                     temp.erase(remove(temp.begin(), temp.end(), temp[i]), temp.end());
                 }
-                 palavraNoSymbol.push_back(temp);
             }
+            Palavra p(temp);
+            palavraNoSymbol.push_back(p);
     }
 
-        cout << "O arquivo foi carregado com sucesso" << endl;
+        return true;
     }
 
     else throw "Arquivo nao encontrado";
 }
 
-void Texto::salvarTexto() {
-    string filename;
-    cout << "Insira o nome do arquivo a ser salvo (sem a extensao)" << endl;
-    cin >> filename;
-    filename += ".txt";
-    ofstream arquivo;
-    arquivo.open(filename.c_str(), ios::out | ios::trunc);
+bool Texto::salvarTexto(string arquivo) {
+    if (!palavra.empty()) {
+        ofstream arq;
+        arq.open(arquivo.c_str(), ios::out | ios::trunc);
 
-    if(arquivo.is_open()) {
-        list<Palavra> :: iterator it;
-        for (it = palavra.begin(); it != palavra.end(); it++) {
-            arquivo << it->getWord() << " ";
+        if(arq.is_open()) {
+            list<Palavra> :: iterator it;
+            for (it = palavra.begin(); it != palavra.end(); it++) {
+                arq << it->getWord() << " ";
+            }
+            arq.close();
+            return true;
         }
-    }
 
-    else throw "Nao foi possivel salvar o arquivo";
+        else throw "Nao foi possivel salvar o arquivo";
+
+    }
+    else throw "A lista está vazia";
 }
 
-void Texto::alterarPalavra(list<Palavra> :: iterator it) {
+void Texto::alterarPalavra(Palavra errada, Palavra correta) {
 
-    string s;
-    cout << "Digite a nova palavra" << endl;
-    cin >> s;
-    Palavra p(s);
-    palavra.insert(it, s);
-
+    list<Palavra> :: iterator it;
+    for (it = palavra.begin(); it != palavra.end(); it++) {
+        if(palavra.front() == errada) 
+            break;
+    }
+    palavra.insert(it, correta);
 }
 
 list<Palavra> :: iterator Texto::getPrimeiro() {
