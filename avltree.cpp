@@ -34,6 +34,10 @@ void AvlTree::mostrar(){
     printInOrder(raiz);
 }
 
+stack<Palavra> AvlTree::inOrderPublic(){
+    return inOrder();
+}
+
 //*****************
 //*METODOS PRIVATE*
 //*****************
@@ -163,7 +167,7 @@ int AvlTree::busca(no *raiz, Palavra& a){
 }
 
 //Busca privado sobrecarregado
-int busca(no* raiz, Palavra& p, stack<Palavra>& semelhante){
+int AvlTree::busca(no* raiz, Palavra& p, stack<Palavra>& semelhante){
     if(!raiz){
         return 0;
     }else{
