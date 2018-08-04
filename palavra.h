@@ -14,6 +14,7 @@ public:
 	int compara(Palavra &);
 	string getWord();
 	void setWord(string &);
+	friend ostream & operator << (ostream &out, const Palavra &);
 
 private:
 	string word;

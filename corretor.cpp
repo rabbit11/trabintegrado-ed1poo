@@ -12,7 +12,7 @@ void Corretor::verificarTexto(){
     temp = text.getPrimeiro();
     while(!text.ultimo(temp)){
         if(!dic.consulta(text.getPalavra(temp))){
-            erros.push_front(text.getPalavra(temp));
+            erros.push_back(text.getPalavra(temp));
         }
         advance(temp, 1);
     }
@@ -26,7 +26,7 @@ bool Corretor::getErros(){
 void Corretor::exibeErros(){
     list<Palavra> :: iterator temp;
     for(temp = erros.begin(); temp != erros.end(); temp++){
-        cout << temp->getWord() << endl;
+        cout << *temp << endl;
     }
 }
 

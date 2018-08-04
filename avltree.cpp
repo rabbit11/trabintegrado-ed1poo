@@ -196,7 +196,7 @@ void AvlTree::printInOrder(no *raiz){
         return;
 
     printInOrder(raiz->esq);
-    cout << raiz->palavra.getWord() << endl;
+    cout << raiz->palavra << endl;
     printInOrder(raiz->dir);
 }
 
