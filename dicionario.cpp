@@ -114,6 +114,15 @@ void Dicionario::buscaSemelhantes(Palavra& p){
     return;
 }
 
+//função que reseta a lista de semelhantes para que possa ser usada
+//para armazenar novas palavras semelhantes a uma outra palavra
+void Dicionario::resetSemelhantes(){
+    if(!semelhantes.empty()){
+        semelhantes.clear();
+    }
+    else throw "Lista de semelhantes não possui elementos.";
+}
+
 //retorna true caso o iterador esteja na última palavra do deque
 //e false caso o contrário
 bool Dicionario::ultimo(deque<Palavra> :: iterator& it){
@@ -142,7 +151,7 @@ Palavra& Dicionario::getPalavra(deque<Palavra> :: iterator& it){
 }
 
 //função retorna uma palavra do deque de acordo com o índice fornecido
-Palavra& Dicionario::getPalavra(unsigned &i){
+Palavra& Dicionario::getPalavra(unsigned i){
     if(i < semelhantes.size() && i <= 6){
         return semelhantes[i];
     }
