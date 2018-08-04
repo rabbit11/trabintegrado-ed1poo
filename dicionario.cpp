@@ -141,21 +141,25 @@ Palavra& Dicionario::getPalavra(deque<Palavra> :: iterator& it){
     return *it;
 }
 
+//função retorna uma palavra do deque de acordo com o índice fornecido
+Palavra& Dicionario::getPalavra(unsigned &i){
+    if(i < semelhantes.size() && i <= 6){
+        return semelhantes[i];
+    }
+    else throw "Indice inserido inválido";
+}
+
 //imprime lista de palavras semelhantes
 void Dicionario::printSemelhantes(){
-<<<<<<< HEAD
+
     if(semelhantes.empty()){
-        cout << "Não foram encontradas palavras semelhantes." << endl;
+        throw "Não foram encontradas palavras semelhantes.";
     }
     int tamanho = semelhantes.size();
     for(int i = 0;  i < 7 && i < tamanho; i++){
         Palavra temp = semelhantes[i];
         string aux = temp.getWord();
         cout << i << "." << aux << endl;
-=======
-    for(int i = 0;  i < 7 && !semelhantes.empty(); i++){
-        Palavra temp = semelhantes[i];
-        string aux = temp.getWord();
-        cout << i << "." << aux << endl;
+
     }
 }
