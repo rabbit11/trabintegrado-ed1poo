@@ -36,3 +36,9 @@ void Palavra::incrementarOcorrencia(){
 int Palavra::getOcorrencias(){
 	return ocorrencias;
 }
+
+ostream& operator<<(ostream& os, const Palavra& a)
+{
+    os << a.word;
+    return os;
+}
