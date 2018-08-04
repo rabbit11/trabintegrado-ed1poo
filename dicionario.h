@@ -30,7 +30,7 @@ class Dicionario{
         deque<Palavra> :: iterator getPrimeiro();
         void getProx(deque<Palavra> :: iterator& it);
         Palavra& getPalavra(deque<Palavra> :: iterator& it);
-
+        Palavra& getPalavra(unsigned &i);
 
 };
 
