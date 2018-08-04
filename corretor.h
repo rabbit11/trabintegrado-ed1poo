@@ -31,6 +31,7 @@ class Corretor{
         bool errosFim();
         void errosProx();
         void salvarTexto();
+        void mostrarSemelhantes(Palavra a);
 };
 
 #endif
