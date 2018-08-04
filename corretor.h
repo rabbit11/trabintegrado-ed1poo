@@ -19,7 +19,6 @@ class Corretor{
 
     public:
         Corretor(){
-            it = erros.begin();
             text.carregarTexto();
         }
         ~Corretor();
@@ -31,6 +30,7 @@ class Corretor{
         void adicionarEx(Palavra);
         bool errosFim();
         void errosProx();
+        void salvarTexto();
 };
 
 #endif
