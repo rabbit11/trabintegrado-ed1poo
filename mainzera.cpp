@@ -19,7 +19,7 @@ int main(){
             while(!corretor.errosFim()){
                 opc = 0;
                 cout << "Erro: " << corretor.erroAtual().getWord() << endl;
-                cout << "1- Adicionar ao dicionario como excessao" << endl;
+                cout << "1- Adicionar ao dicionario como exceçao" << endl;
                 cout << "2- Listar sugestoes do dicionario" << endl;
                 cout << "3- Corrigir manualmente" << endl;
                 cout << "4- Ignorar erro" << endl;
