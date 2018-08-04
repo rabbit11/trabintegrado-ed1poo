@@ -18,7 +18,6 @@ class Dicionario{
     public:
         Dicionario();
         ~Dicionario();
-        void printarvore();
         bool consulta(Palavra& p);
         void inserirPalavra(Palavra& p);
         void importarDicionario();

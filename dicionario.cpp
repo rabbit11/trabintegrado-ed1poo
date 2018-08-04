@@ -13,7 +13,13 @@ using namespace std;
 //e importa um Dicionario de um arquivo .txt
 Dicionario::Dicionario(){
     mudou = false;
-    importarDicionario();
+
+    try{
+        importarDicionario();
+    }
+    catch(const char *e){
+        cout << e << endl;
+    }
 }
 
 Dicionario::~Dicionario(){
@@ -21,11 +27,6 @@ Dicionario::~Dicionario(){
     return;
 }
 
-//função utilizada para que pudéssemos checar se todas as palavras foram importadas
-//para a árvore corretamente
-void Dicionario::printarvore(){
-    tree.mostrar();
-}
 
 //função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
 //retorna false para palavra não encontrada e true para palavra encontrada
@@ -47,21 +48,15 @@ void Dicionario::importarDicionario(){
     ifstream arquivo;
     arquivo.open("dic.txt");
 
+    if(arquivo.eof()){
+        throw "Dicionario vazio";
+    }
+
     while(!arquivo.eof()){
-        //getline(arquivo, buffer);
         arquivo >> temp;
         buffer.setWord(temp);
-        //cout << buffer << endl;
         tree.inserir(buffer);
       }
-
-    // if(arquivo){
-    //     while(arquivo >> buffer){
-    //         tree.inserir(buffer);
-    //         //cout << buffer << endl;
-    //     }
-    //     arquivo.close();
-    // }
 
     arquivo.close();
 
@@ -69,20 +64,6 @@ void Dicionario::importarDicionario(){
 
     return;
 }
-
-//verifica se alguma alteraçao foi feita no Dicionario, caso alguma alteração tenha sido feita
-//exportamos o novo Dicionario para "dic.txt", do contrario mantemos como este estava antes
-// void Dicionario::exportarDicionario(Palavra& p){
-//     if(mudou == true){
-//         ofstream arquivo;
-//         arquivo.open("dic.txt", ios::app);
-//
-//         if(arquivo.is_open()){
-//             arquivo << p.getWord() << endl;
-//         }
-//         arquivo.close();
-//     }
-// }
 
 //a versão abaixa exporta o dicionário como um todo, caso uma alteração no dicionário tenha sido efetuada
 void Dicionario::exportarDicionario(){
