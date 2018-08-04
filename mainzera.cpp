@@ -16,7 +16,6 @@ int main(){
             corretor.exibeErros();
             int opc;
             string nova;
-            cout << "ATUAL: " << corretor.erroAtual().getWord() << endl;
             while(!corretor.errosFim()){
                 opc = 0;
                 cout << "Erro: " << corretor.erroAtual().getWord() << endl;

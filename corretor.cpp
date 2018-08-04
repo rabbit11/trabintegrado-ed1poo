@@ -65,5 +65,6 @@ void Corretor::mostrarSemelhantes(Palavra a){
 }
 
 void Corretor::corrigirSemelhante(Palavra errada, int i){
-    text.alterarPalavra(errada, dic.getSemelhante(i));
+    text.alterarPalavra(errada, dic.getPalavra(i));
+    dic.resetSemelhantes();
 }
