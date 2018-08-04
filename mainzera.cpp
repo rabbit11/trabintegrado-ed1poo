@@ -36,7 +36,7 @@ int main(){
                         corretor.mostrarSemelhantes(corretor.erroAtual());
                         cout << "Selecione sugestao: " << endl;
                         cin >> opc;
-                        corretor.corrigirSemelhante(opc);
+                        corretor.corrigirSemelhante(corretor.erroAtual(), opc);
 
                         break;
 

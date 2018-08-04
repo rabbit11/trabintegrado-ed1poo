@@ -32,7 +32,7 @@ class Corretor{
         void errosProx();
         void salvarTexto();
         void mostrarSemelhantes(Palavra);
-        void corrigirSemelhante(int);
+        void corrigirSemelhante(Palavra, int);
 };
 
 #endif
