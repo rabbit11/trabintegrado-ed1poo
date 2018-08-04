@@ -16,6 +16,7 @@ int main(){
             corretor.exibeErros();
             int opc;
             string nova;
+            cout << "ATUAL: " << corretor.erroAtual().getWord() << endl;
             while(!corretor.errosFim()){
                 cout << "Erro: " << corretor.erroAtual().getWord() << endl;
                 cout << "1- Adicionar ao dicionario como excessao" << endl;
@@ -47,6 +48,7 @@ int main(){
         }
     }
 
+    corretor.salvarTexto();
     cout << "Arquivo corrigido exportado. Bye!" << endl;
     return 0;
 }

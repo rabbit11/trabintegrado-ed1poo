@@ -16,6 +16,7 @@ void Corretor::verificarTexto(){
         }
         advance(temp, 1);
     }
+    it = erros.begin();
 }
 
 bool Corretor::getErros(){
@@ -51,4 +52,9 @@ bool Corretor::errosFim(){
 
 void Corretor::errosProx(){
     advance(it, 1);
+}
+
+void Corretor::salvarTexto(){
+    string saida = "corrigido.txt";
+    text.salvarTexto(saida);
 }
