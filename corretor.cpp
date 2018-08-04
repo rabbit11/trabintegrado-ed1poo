@@ -58,3 +58,8 @@ void Corretor::salvarTexto(){
     string saida = "corrigido.txt";
     text.salvarTexto(saida);
 }
+
+void Corretor::mostrarSemelhantes(Palavra a){
+    dic.buscaSemelhantes(a);
+    dic.printSemelhantes();
+}
