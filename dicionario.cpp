@@ -151,7 +151,6 @@ Palavra& Dicionario::getPalavra(unsigned &i){
 
 //imprime lista de palavras semelhantes
 void Dicionario::printSemelhantes(){
-
     if(semelhantes.empty()){
         throw "Não foram encontradas palavras semelhantes.";
     }
@@ -160,6 +159,5 @@ void Dicionario::printSemelhantes(){
         Palavra temp = semelhantes[i];
         string aux = temp.getWord();
         cout << i << "." << aux << endl;
-
     }
 }
