@@ -65,7 +65,7 @@ void Dicionario::importarDicionario(){
 
     arquivo.close();
 
-    cout << "Dicionario importado com sucesso!" << endl;
+    cout << "Dicionário importado com sucesso!" << endl;
 
     return;
 }
@@ -104,23 +104,49 @@ void Dicionario::exportarDicionario(){
     }
 }
 
-
 //função que busca e retorna uma lista de palavras semelhantes aquela passada como parâmetro
 void Dicionario::buscaSemelhantes(Palavra& p){
-    if(!tree.vazia()){
+    if(tree.vazia()){
         return;
     }else{
         tree.busca(p, semelhantes);
-        //printSemelhantes(semelhantes);
     }
     return;
 }
 
+//retorna true caso o iterador esteja na última palavra do deque
+//e false caso o contrário
+bool Dicionario::ultimo(deque<Palavra> :: iterator& it){
+    if(it == semelhantes.end()){
+        return true;
+    }
+    return false;
+}
+
+//função que retorna um iterador para o primeiro elemento do deque
+//de palavras semelhantes
+deque<Palavra> :: iterator Dicionario::getPrimeiro(){
+    deque<Palavra>::iterator it = semelhantes.begin();
+
+    return it;
+}
+
+//função para avançar o iterador no deque de palavras semelhantes
+void Dicionario::getProx(deque<Palavra> :: iterator& it){
+    advance(it, 1);
+}
+
+//função retorna a palavra para qual o iterador está apontando
+Palavra& Dicionario::getPalavra(deque<Palavra> :: iterator& it){
+    return *it;
+}
+
 //imprime lista de palavras semelhantes
-void Dicionario::printSemelhantes(stack<Palavra>& semelhante){
-    for(int i = 0;  i < 7 && !semelhante.empty(); i++){
-        Palavra temp = semelhante.top();
+void Dicionario::printSemelhantes(){
+    for(int i = 0;  i < 7 && !semelhantes.empty(); i++){
+        Palavra temp = semelhantes[i];
         string aux = temp.getWord();
         cout << i << "." << aux << endl;
+
     }
 }
