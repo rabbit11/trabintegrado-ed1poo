@@ -180,9 +180,9 @@ int AvlTree::busca(no* raiz, Palavra& p, deque<Palavra>& semelhantes){
         while(temp){
             if(first_second == temp->palavra.getWord().substr(0,2)){
                 semelhantes.push_front(temp->palavra);
-            }if(p.compara(raiz->palavra) < 0){
+            }if(p.compara(temp->palavra) < 0){
                 temp = temp->esq;
-            }else if(p.compara(raiz->palavra) > 0){
+            }else if(p.compara(temp->palavra) > 0){
                 temp = temp->dir;
             }
         }
