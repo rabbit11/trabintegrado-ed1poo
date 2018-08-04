@@ -18,6 +18,7 @@ int main(){
             string nova;
             cout << "ATUAL: " << corretor.erroAtual().getWord() << endl;
             while(!corretor.errosFim()){
+                opc = 0;
                 cout << "Erro: " << corretor.erroAtual().getWord() << endl;
                 cout << "1- Adicionar ao dicionario como excessao" << endl;
                 cout << "2- Listar sugestoes do dicionario" << endl;
@@ -32,6 +33,10 @@ int main(){
                         break;
 
                     case 2:
+                        corretor.mostrarSemelhantes(corretor.erroAtual());
+                        cout << "Selecione sugestao: " << endl;
+                        cin >> opc;
+                        corretor.corrigirSemelhante(opc);
 
                         break;
 

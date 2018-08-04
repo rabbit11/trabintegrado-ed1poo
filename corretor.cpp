@@ -63,3 +63,7 @@ void Corretor::mostrarSemelhantes(Palavra a){
     dic.buscaSemelhantes(a);
     dic.printSemelhantes();
 }
+
+void Corretor::corrigirSemelhante(int i){
+    text.alterarPalavra(dic.getSemelhante(i));
+}
