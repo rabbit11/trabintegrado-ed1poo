@@ -21,12 +21,6 @@ Dicionario::~Dicionario(){
     return;
 }
 
-//função utilizada para que pudéssemos checar se todas as palavras foram importadas
-//para a árvore corretamente
-void Dicionario::printarvore(){
-    tree.mostrar();
-}
-
 //função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
 //retorna false para palavra não encontrada e true para palavra encontrada
 bool Dicionario::consulta(Palavra& p){
@@ -65,7 +59,7 @@ void Dicionario::importarDicionario(){
 
     arquivo.close();
 
-    cout << "Dicionário importado com sucesso!" << endl;
+    cout << "Dicionario importado com sucesso!" << endl;
 
     return;
 }
@@ -120,7 +114,7 @@ void Dicionario::resetSemelhantes(){
     if(!semelhantes.empty()){
         semelhantes.clear();
     }
-    else throw "Lista de semelhantes não possui elementos.";
+    else throw "Lista de semelhantes nao possui elementos.";
 }
 
 //retorna true caso o iterador esteja na última palavra do deque
@@ -155,14 +149,14 @@ Palavra& Dicionario::getPalavra(unsigned i){
     if(i < semelhantes.size() && i <= 6){
         return semelhantes[i];
     }
-    else throw "Indice inserido inválido";
+    else throw "Indice inserido invalido";
 }
 
 //imprime lista de palavras semelhantes
 void Dicionario::printSemelhantes(){
 
     if(semelhantes.empty()){
-        throw "Não foram encontradas palavras semelhantes.";
+        throw "Nao foram encontradas palavras semelhantes.";
     }
     int tamanho = semelhantes.size();
     for(int i = 0;  i < 7 && i < tamanho; i++){
