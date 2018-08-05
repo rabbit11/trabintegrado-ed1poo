@@ -70,8 +70,7 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
         if(it->getWord() == errada.getWord())
             break;
     }
-    palavra.erase(it);
-    palavra.insert(it, correta);
+    *it = correta;
 }
 
 //retorna um iterador para o elemento de primeira posição na list

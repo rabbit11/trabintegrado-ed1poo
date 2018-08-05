@@ -29,13 +29,6 @@ int AvlTree::busca(Palavra& plv, deque<Palavra>& semelhantes){
     return busca(raiz, plv, semelhantes);
 }
 
-void AvlTree::mostrar(){
-    if(vazia()) return;
-
-    cout << "inorder:" << endl;
-    printInOrder(raiz);
-}
-
 stack<Palavra> AvlTree::inOrderPublic(){
     return inOrder();
 }
@@ -188,16 +181,6 @@ int AvlTree::busca(no* raiz, Palavra& p, deque<Palavra>& semelhantes){
         }
     }
     return 1;
-}
-
-//Imprime a árvore em pre order
-void AvlTree::printInOrder(no *raiz){
-    if(raiz == NULL)
-        return;
-
-    printInOrder(raiz->esq);
-    cout << raiz->palavra.getWord() << endl;
-    printInOrder(raiz->dir);
 }
 
 //Desaloca memoria da arvore percorrendo em post-order

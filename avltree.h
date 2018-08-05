@@ -22,7 +22,7 @@ class AvlTree{
         int busca(Palavra&);
         int busca(Palavra& plv, deque<Palavra>& semelhante);
         stack<Palavra> inOrderPublic();
-        void mostrar();
+
         AvlTree(){
             raiz = NULL;
         }
