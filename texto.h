@@ -25,7 +25,7 @@ public:
 	Palavra& getPalavra(const list<Palavra> :: iterator&) const;
 	void setLoad(const string&);
 	void setSave(const string&);
-	void contexto(list<Palavra> :: iterator&);
+	void contexto(list<Palavra> :: iterator&) const;
 };
 
 #endif

@@ -101,7 +101,7 @@ void Texto::setSave(const string &s) {
     save = s;
 }
 
-void Texto::contexto(list<Palavra> :: iterator &it) {
+void Texto::contexto(list<Palavra> :: iterator &it) const {
 
     if (it == palavra.begin()) {
         cout << "Palavra atual" << *it;
