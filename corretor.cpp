@@ -32,7 +32,7 @@ void Corretor::exibeErros(){
 
 void Corretor::corrigirPalavra(string a, Palavra b){
     Palavra nova(a);
-    text.alterarPalavra(a, b);
+    text.alterarPalavra(b, nova);
 }
 
 Palavra Corretor::erroAtual(){
@@ -69,6 +69,6 @@ void Corretor::corrigirSemelhante(Palavra errada, int i){
     dic.resetSemelhantes();
 }
 
-void Corretor::mostrarContexto(){
-
+void Corretor::mostrarContexto(Palavra a){
+    text.contexto(it);
 }

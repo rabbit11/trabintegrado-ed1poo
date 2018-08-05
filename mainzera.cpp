@@ -22,8 +22,8 @@ int main(){
             while(!corretor.errosFim()){ //Retorna 0 se chega ao fim da lista de erros
                 opc = 0;
                 cout << "Erro: " << corretor.erroAtual() << endl; //Retorna a Palavra erro atual da lista
-                // cout << "Contexto: ";
-                // corretor.mostrarContexto(); //Imprime palavra antes e depois do erro
+                cout << "Contexto: ";
+                corretor.mostrarContexto(corretor.erroAtual()); //Imprime palavra antes e depois do erro
                 cout << "1- Adicionar ao dicionario como excecao" << endl;
                 cout << "2- Listar sugestoes do dicionario" << endl;
                 cout << "3- Corrigir manualmente" << endl;

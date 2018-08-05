@@ -33,7 +33,7 @@ class Corretor{
         void salvarTexto();
         void mostrarSemelhantes(Palavra);
         void corrigirSemelhante(Palavra, int);
-        void mostrarContexto();
+        void mostrarContexto(Palavra);
 };
 
 #endif
