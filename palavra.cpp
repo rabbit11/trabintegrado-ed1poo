@@ -20,7 +20,7 @@ int Palavra::compara(Palavra &plv2){
 }
 
 //Retorna o atributo string word
-string Palavra::getWord(){
+string Palavra::getWord() const {
 	return word;
 }
 

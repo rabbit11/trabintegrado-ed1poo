@@ -12,7 +12,7 @@ public:
 	Palavra(string palavra = "") : word(palavra) {};
 	bool operator== (Palavra &);
 	int compara(Palavra &);
-	string getWord();
+	string getWord() const;
 	void setWord(string &);
 	friend ostream & operator << (ostream &out, const Palavra &);
 

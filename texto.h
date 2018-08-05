@@ -12,17 +12,20 @@ using namespace std;
 class Texto {
 
 private:
-	string filename;
+	string load, save;
 	list<Palavra> palavra;
 	list<Palavra> palavraNoSymbol;
 public:
-	Texto(string file = "text.txt") : filename(file) {};
+	Texto(string s1 = "text.txt", string s2 = "save.txt") : load(s1), save(s2) {};
 	bool carregarTexto();
-	void alterarPalavra(Palavra errada, Palavra correta);
-	bool salvarTexto(string arquivo);
-	bool ultimo(list<Palavra> :: iterator it);
+	void alterarPalavra(const Palavra &errada, const Palavra &correta);
+	bool salvarTexto();
+	bool ultimo(const list<Palavra> :: iterator&) const;
 	list<Palavra> :: iterator getPrimeiro();
-	Palavra& getPalavra(list<Palavra> :: iterator it);
+	Palavra& getPalavra(const list<Palavra> :: iterator&) const;
+	void setLoad(const string&);
+	void setSave(const string&);
+	void contexto(list<Palavra> :: iterator&);
 };
 
 #endif

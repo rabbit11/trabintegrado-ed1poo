@@ -18,7 +18,7 @@ int main(){
             string nova;
             while(!corretor.errosFim()){
                 opc = 0;
-                cout << "Erro: " << corretor.erroAtual() << endl;
+                cout << "Erro: " << corretor.erroAtual().getWord() << endl;
                 cout << "1- Adicionar ao dicionario como exceçao" << endl;
                 cout << "2- Listar sugestoes do dicionario" << endl;
                 cout << "3- Corrigir manualmente" << endl;
