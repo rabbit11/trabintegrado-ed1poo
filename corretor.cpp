@@ -12,7 +12,7 @@ void Corretor::verificarTexto(){
     temp = text.getPrimeiro();
     while(!text.ultimo(temp)){
         if(!dic.consulta(text.getPalavra(temp))){
-            erros.push_front(text.getPalavra(temp));
+            erros.push_back(text.getPalavra(temp));
         }
         advance(temp, 1);
     }
@@ -26,13 +26,13 @@ bool Corretor::getErros(){
 void Corretor::exibeErros(){
     list<Palavra> :: iterator temp;
     for(temp = erros.begin(); temp != erros.end(); temp++){
-        cout << temp->getWord() << endl;
+        cout << *temp << endl;
     }
 }
 
 void Corretor::corrigirPalavra(string a, Palavra b){
     Palavra nova(a);
-    text.alterarPalavra(a, b);
+    text.alterarPalavra(b, nova);
 }
 
 Palavra Corretor::erroAtual(){
@@ -67,4 +67,8 @@ void Corretor::mostrarSemelhantes(Palavra a){
 void Corretor::corrigirSemelhante(Palavra errada, int i){
     text.alterarPalavra(errada, dic.getPalavra(i));
     dic.resetSemelhantes();
+}
+
+void Corretor::mostrarContexto(Palavra a){
+    text.contexto(it);
 }

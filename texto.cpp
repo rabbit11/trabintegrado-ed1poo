@@ -70,8 +70,7 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
         if(it->getWord() == errada.getWord())
             break;
     }
-    palavra.erase(it);
-    palavra.insert(it, correta);
+    *it = correta;
 }
 
 //retorna um iterador para o elemento de primeira posição na list
@@ -103,24 +102,33 @@ void Texto::setSave(const string &s) {
 
 void Texto::contexto(list<Palavra> :: iterator &it) const {
 
-    if (it == palavra.begin()) {
-        cout << "Palavra atual" << *it;
-        advance(it, 1);
-        cout << "Proxima palavra" << *it;
+    list<Palavra> :: iterator temp;
+    list<Palavra> :: iterator fim;
+    fim = palavraNoSymbol.end();
+    advance(fim, -1);
+    for (temp = palavraNoSymbol.begin(); temp != palavraNoSymbol.end(); temp++) {
+        if(*temp == *it)
+            break;
     }
-    else if (it == palavra.end()) {
-        advance(it, -1);
-        cout << "Palavra anterior: " << *it;
-        advance(it, 1);
-        cout << "Palavra atual" << *it;
+
+    if (temp == palavraNoSymbol.begin()) {
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << endl;;
+    }
+    else if (temp == fim) {
+        advance(temp, -1);
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << endl;
 
     }
     else {
-        advance(it, -1);
-        cout << "Palavra anterior: " << *it;
-        advance(it, 1);
-        cout << "Palavra atual" << *it;
-        advance(it, 1);
-        cout << "Proxima palavra" << *it;
+        advance(temp, -1);
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << endl;
     }
 }
