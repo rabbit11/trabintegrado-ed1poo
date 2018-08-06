@@ -17,7 +17,7 @@ Dicionario::Dicionario(){
     try{
         importarDicionario();
     }
-    catch(const char *e){
+    catch(string e){
         cout << e << endl;
     }
 
@@ -26,7 +26,13 @@ Dicionario::Dicionario(){
 //destrutor da classe Dicionario, que exporta o dicionario como um todo
 //de volta para o arquivo .txt
 Dicionario::~Dicionario(){
-    exportarDicionario();
+
+    try{
+        exportarDicionario();
+    }
+    catch(string e){
+        cout << e << endl;
+    }
 }
 
 //função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
@@ -47,6 +53,7 @@ void Dicionario::importarDicionario(){
     Palavra buffer;
     string temp;
     ifstream arquivo;
+
     arquivo.open("dic.txt");
 
     if(arquivo.eof()){
@@ -72,7 +79,6 @@ void Dicionario::exportarDicionario(){
         stack <Palavra>s;
         string temp;
         ofstream arquivo;
-        arquivo.open("dic.txt");
 
         s = tree.inOrderPublic();
 
@@ -82,6 +88,8 @@ void Dicionario::exportarDicionario(){
                 arquivo << temp << endl;
                 s.pop();
             }
+        }else{
+            throw "Falha ao exportar Dicionario";
         }
         arquivo.close();
     }
