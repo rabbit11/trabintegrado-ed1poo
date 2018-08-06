@@ -13,12 +13,20 @@ using namespace std;
 //e importa um Dicionario de um arquivo .txt
 Dicionario::Dicionario(){
     mudou = false;
-    importarDicionario();
+
+    try{
+        importarDicionario();
+    }
+    catch(const char *e){
+        cout << e << endl;
+    }
+
 }
 
+//destrutor da classe Dicionario, que exporta o dicionario como um todo
+//de volta para o arquivo .txt
 Dicionario::~Dicionario(){
     exportarDicionario();
-    return;
 }
 
 //função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
@@ -41,22 +49,15 @@ void Dicionario::importarDicionario(){
     ifstream arquivo;
     arquivo.open("dic.txt");
 
+    if(arquivo.eof()){
+        throw "Dicionario vazio";
+    }
+
     while(!arquivo.eof()){
-        //getline(arquivo, buffer);
         arquivo >> temp;
         buffer.setWord(temp);
-        //cout << buffer << endl;
         tree.inserir(buffer);
       }
-
-    // if(arquivo){
-    //     while(arquivo >> buffer){
-    //         tree.inserir(buffer);
-    //         //cout << buffer << endl;
-    //     }
-    //     arquivo.close();
-    // }
-
     arquivo.close();
 
     cout << "Dicionario importado com sucesso!" << endl;
@@ -64,21 +65,8 @@ void Dicionario::importarDicionario(){
     return;
 }
 
-//verifica se alguma alteraçao foi feita no Dicionario, caso alguma alteração tenha sido feita
-//exportamos o novo Dicionario para "dic.txt", do contrario mantemos como este estava antes
-// void Dicionario::exportarDicionario(Palavra& p){
-//     if(mudou == true){
-//         ofstream arquivo;
-//         arquivo.open("dic.txt", ios::app);
-//
-//         if(arquivo.is_open()){
-//             arquivo << p.getWord() << endl;
-//         }
-//         arquivo.close();
-//     }
-// }
-
-//a versão abaixa exporta o dicionário como um todo, caso uma alteração no dicionário tenha sido efetuada
+//a versão abaixa exporta o dicionário como um todo,
+//caso uma alteração no dicionário tenha sido efetuada
 void Dicionario::exportarDicionario(){
     if(mudou == true){
         stack <Palavra>s;
@@ -95,6 +83,7 @@ void Dicionario::exportarDicionario(){
                 s.pop();
             }
         }
+        arquivo.close();
     }
 }
 

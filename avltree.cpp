@@ -173,6 +173,10 @@ int AvlTree::busca(no* raiz, Palavra& p, deque<Palavra>& semelhantes){
         first_second = first_second.substr(0,2);
         no* temp = raiz;
 
+        if(p.getWord().size() < 2){
+            return 0;
+        }
+
         while(temp){
             if(first_second == temp->palavra.getWord().substr(0,2)){
                 semelhantes.push_front(temp->palavra);
