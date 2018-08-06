@@ -7,10 +7,16 @@ using namespace std;
 //e adicionando a lista de erros caso nao encontre
 void Corretor::verificarTexto(){
     list<Palavra> :: iterator temp;
+    list<Palavra> :: iterator encontra;
     temp = text.getPrimeiro();
-    while(!text.ultimo(temp)){
-        if(!dic.consulta(text.getPalavra(temp))){
-            erros.push_back(text.getPalavra(temp));
+    while(!text.ultimo(temp)){      //Itera pela lista de palavras do texto
+        if(!dic.consulta(text.getPalavra(temp))){       //Palavra nao foi encontrada no dicionario
+            encontra = find(erros.begin(), erros.end(), text.getPalavra(temp));         //Iterador procura na lista de erros o erro
+            if(encontra == erros.end())         //Caso o erro nao conste na lista de erros
+                erros.push_back(text.getPalavra(temp));         //Acrescenta a palavra na lista de erros
+            it = find(erros.begin(), erros.end(), text.getPalavra(temp)); //Encontra o apontador do erro na lista de erros
+            (*it).incrementarOcorrencias();     //Acrescenta o numero de ocorrencias do erro
+            // cout << text.getPalavra(temp).getWord() << " > " << text.getPalavra(temp).getOcorrencias() << endl;
         }
         advance(temp, 1);
     }
@@ -82,6 +88,9 @@ void Corretor::mostrarContexto(Palavra a){
     text.contexto(it);
 }
 
+void Corretor::mostrarOcorrencias(Palavra a){
+    cout << a.getOcorrencias() << endl;
+}
 //Recebe nome do arquivo e o carrega
 void Corretor::carregarTexto(const string &s) {
     text.setLoad(s);
