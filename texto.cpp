@@ -60,7 +60,7 @@ bool Texto::salvarTexto() {
         else throw "Nao foi possivel salvar o arquivo";
 
     }
-    else throw "A lista está vazia";
+    else throw "A lista esta vazia";
 }
 
 void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {

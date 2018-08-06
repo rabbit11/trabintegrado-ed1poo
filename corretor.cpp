@@ -3,10 +3,6 @@
 
 using namespace std;
 
-Corretor::~Corretor(){
-// o que colocar aqui?
-}
-
 void Corretor::verificarTexto(){
     list<Palavra> :: iterator temp;
     temp = text.getPrimeiro();
@@ -54,8 +50,8 @@ void Corretor::errosProx(){
     advance(it, 1);
 }
 
-void Corretor::salvarTexto(){
-    text.setSave("saida.txt");
+void Corretor::salvarTexto(const string &n){
+    text.setSave(n);
     text.salvarTexto();
 }
 
@@ -71,4 +67,9 @@ void Corretor::corrigirSemelhante(Palavra errada, int i){
 
 void Corretor::mostrarContexto(Palavra a){
     text.contexto(it);
+}
+
+void Corretor::carregarTexto(const string &s) {
+    text.setLoad(s);
+    text.carregarTexto();
 }

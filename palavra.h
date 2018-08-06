@@ -13,7 +13,7 @@ public:
 	bool operator== (Palavra &);
 	int compara(Palavra &);
 	string getWord() const;
-	void setWord(string);
+	void setWord(const string&);
 	friend ostream & operator << (ostream &out, const Palavra &);
 
 private:

@@ -18,22 +18,19 @@ class Corretor{
         list<Palavra> :: iterator it;
 
     public:
-        Corretor(){
-            text.carregarTexto();
-        }
-        ~Corretor();
         void verificarTexto();
         bool getErros();
         void exibeErros();
-        void corrigirPalavra(string a, Palavra);
+        void corrigirPalavra(string, Palavra);
         Palavra erroAtual();
         void adicionarEx(Palavra);
         bool errosFim();
         void errosProx();
-        void salvarTexto();
+        void salvarTexto(const string &);
         void mostrarSemelhantes(Palavra);
         void corrigirSemelhante(Palavra, int);
         void mostrarContexto(Palavra);
+        void carregarTexto(const string &);
 };
 
 #endif

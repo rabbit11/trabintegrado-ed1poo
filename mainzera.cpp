@@ -5,10 +5,14 @@
 int main(){
     Corretor corretor;
     string sory;
+    string name;
     cout << "7777777777777777777777777777777777777777777777777" << endl;
     cout << "77 -CORRETOR ORTOGRAFICO HERRAR EH UMANO v2.1- 77" << endl;
     cout << "7777777777777777777777777777777777777777777777777" << endl;
     cout << endl;
+    cout << "Digite o nome do arquivo a ser corrigido" << endl;
+    cin >> name;
+    corretor.carregarTexto(name);
     cout << "Iniciar correcao do texto? (y/n)" << endl;
     cin >> sory;
 
@@ -56,8 +60,10 @@ int main(){
             }
         }
     }
-
-    corretor.salvarTexto(); //Exporta arquivo de texto corrigido
+    string n;
+    cout << "Digite o nome do arquivo a ser exportado" << endl;
+    cin >> n;
+    corretor.salvarTexto(n); //Exporta arquivo de texto corrigido
     cout << "Arquivo corrigido exportado. Bye!" << endl;
     return 0;
 }
