@@ -50,8 +50,8 @@ bool Texto::salvarTexto() {
 
         if(arq.is_open()) {
             list<Palavra> :: iterator it;
-            for (it = palavra.begin(); it != palavra.end(); it++) {
-                arq << it->getWord() << " ";
+            for (it = palavraNoSymbol.begin(); it != palavraNoSymbol.end(); it++) {
+                arq << *it << " ";
             }
             arq.close();
             return true;
@@ -66,11 +66,26 @@ bool Texto::salvarTexto() {
 void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
 
     list<Palavra> :: iterator it;
-    for (it = palavra.begin(); it != palavra.end(); it++) {
+    list<Palavra> :: iterator it2 = palavra.begin();
+    bool flag = false;
+    char tempc;
+
+    for (it = palavraNoSymbol.begin(), it2 = palavra.begin(); it != palavraNoSymbol.end() && it2 != palavra.end(); it++, it2++) {
+      string temp = it2->getWord();
+      flag = false;
+      for (unsigned int i = 0; i < temp.length(); i++) {
+          if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+              tempc = temp[i];
+              flag = true;
+              break;
+          }
+      }
         if(it->getWord() == errada.getWord())
             break;
     }
     *it = correta;
+    if (flag)
+      it->setWord(it->getWord() + tempc);
 }
 
 //retorna um iterador para o elemento de primeira posição na list
@@ -100,18 +115,18 @@ void Texto::setSave(const string &s) {
     save = s;
 }
 
-void Texto::contexto(list<Palavra> :: iterator &it) const {
+void Texto::contexto(list<Palavra> :: iterator &it) {
 
     list<Palavra> :: iterator temp;
     list<Palavra> :: iterator fim;
-    fim = palavraNoSymbol.end();
+    fim = palavra.end();
     advance(fim, -1);
-    for (temp = palavraNoSymbol.begin(); temp != fim; temp++) {
+    for (temp = palavra.begin(); temp != fim; temp++) {
         if(*temp == *it)
             break;
     }
 
-    if (temp == palavraNoSymbol.begin()) {
+    if (temp == palavra.begin()) {
         cout << *temp << " ";
         advance(temp, 1);
         cout << *temp << endl;;

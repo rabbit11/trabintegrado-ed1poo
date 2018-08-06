@@ -25,7 +25,7 @@ string Palavra::getWord() const {
 }
 
 //Altera o valor do atributo string word
-void Palavra::setWord(string &p){
+void Palavra::setWord(string p){
 	word = p;
 }
 
