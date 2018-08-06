@@ -31,6 +31,7 @@ class Corretor{
         void corrigirSemelhante(Palavra, int);
         void mostrarContexto(Palavra);
         void carregarTexto(const string &);
+        void mostrarOcorrencias(Palavra a);
 };
 
 #endif
