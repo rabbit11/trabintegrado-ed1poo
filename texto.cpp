@@ -10,7 +10,10 @@
 
 using namespace std;
 
-bool Texto::carregarTexto() {
+/*-------------------------------------------------------------------------------------------------------------------------------
+     carregarTexto: Funcao para carregar o arquivo .txt para a correcao. Retorna uma excecao caso o arquivo nao seja encontrado.
+-------------------------------------------------------------------------------------------------------------------------------*/
+void Texto::carregarTexto() {
     string plv;
 
     ifstream arq;
@@ -37,13 +40,15 @@ bool Texto::carregarTexto() {
             Palavra p(temp);
             palavraNoSymbol.push_back(p);
         }
-        return true;
     }
 
     else throw "Arquivo nao encontrado";
 }
 
-bool Texto::salvarTexto() {
+/*-------------------------------------------------------------------------------------------------------------------------------
+     salvarTexto: Funcao para salvar o arquivo .txt corrigido. Retorna uma excecao caso nao seja possivel salvar o arquivo
+-------------------------------------------------------------------------------------------------------------------------------*/
+void Texto::salvarTexto() {
     if (!palavra.empty()) {
         ofstream arq;
         arq.open(save, ios::out | ios::trunc);
@@ -54,7 +59,6 @@ bool Texto::salvarTexto() {
                 arq << *it << " ";
             }
             arq.close();
-            return true;
         }
 
         else throw "Nao foi possivel salvar o arquivo";
@@ -63,29 +67,34 @@ bool Texto::salvarTexto() {
     else throw "A lista esta vazia";
 }
 
+/*-------------------------------------------------------------------------------------------------------------------------------
+     alterarPalavra: Funcao para trocar a palavrada errada pela correta na lista
+-------------------------------------------------------------------------------------------------------------------------------*/
 void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
 
     list<Palavra> :: iterator it;
-    list<Palavra> :: iterator it2 = palavra.begin();
+    list<Palavra> :: iterator it2;
     bool flag = false;
     char tempc;
 
-    for (it = palavraNoSymbol.begin(), it2 = palavra.begin(); it != palavraNoSymbol.end() && it2 != palavra.end(); it++, it2++) {
-      string temp = it2->getWord();
-      flag = false;
-      for (unsigned int i = 0; i < temp.length(); i++) {
-          if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
-              tempc = temp[i];
-              flag = true;
+    for(int i = 0; i < errada.getOcorrencias(); i++) {
+      for (it = palavraNoSymbol.begin(), it2 = palavra.begin(); it != palavraNoSymbol.end() && it2 != palavra.end(); it++, it2++) {
+        string temp = it2->getWord();
+        flag = false;
+        for (unsigned int i = 0; i < temp.length(); i++) {
+            if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+                tempc = temp[i];
+                flag = true;
+                break;
+            }
+        }
+          if(it->getWord() == errada.getWord())
               break;
-          }
       }
-        if(it->getWord() == errada.getWord())
-            break;
-    }
-    *it = correta;
-    if (flag)
-      it->setWord(it->getWord() + tempc);
+      *it = correta;
+      if (flag)
+        it->setWord(it->getWord() + tempc);
+  }
 }
 
 //retorna um iterador para o elemento de primeira posição na list

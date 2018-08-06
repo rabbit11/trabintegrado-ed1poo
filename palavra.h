@@ -15,12 +15,12 @@ public:
 	string getWord() const;
 	void setWord(const string&);
 	friend ostream & operator << (ostream &out, const Palavra &);
+	int getOcorrencias() const;
 
 private:
 	string word;
 	int ocorrencias;
 	void incrementarOcorrencia();
-	int getOcorrencias();
 };
 
 #endif

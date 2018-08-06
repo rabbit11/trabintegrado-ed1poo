@@ -33,7 +33,7 @@ void Palavra::incrementarOcorrencia(){
 	ocorrencias++;
 }
 
-int Palavra::getOcorrencias(){
+int Palavra::getOcorrencias() const {
 	return ocorrencias;
 }
 
