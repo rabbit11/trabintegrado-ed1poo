@@ -26,10 +26,6 @@ class Dicionario{
         void buscaSemelhantes(Palavra& p);
         void printSemelhantes();
         void resetSemelhantes();
-
-        bool ultimo(deque<Palavra> :: iterator& it);
-        deque<Palavra> :: iterator getPrimeiro();
-        void getProx(deque<Palavra> :: iterator& it);
         Palavra& getPalavra(deque<Palavra> :: iterator& it);
         Palavra& getPalavra(unsigned i);
 
