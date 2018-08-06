@@ -17,7 +17,7 @@ Dicionario::Dicionario(){
     try{
         importarDicionario();
     }
-    catch(string e){
+    catch(const char* e){
         cout << e << endl;
     }
 
@@ -30,7 +30,7 @@ Dicionario::~Dicionario(){
     try{
         exportarDicionario();
     }
-    catch(string e){
+    catch(const char* e){
         cout << e << endl;
     }
 }
@@ -62,9 +62,11 @@ void Dicionario::importarDicionario(){
 
     while(!arquivo.eof()){
         arquivo >> temp;
-        if(arquivo.gcount() == 0){
+
+        if(temp.size() == 0){
             throw "Dicionario vazio";
         }
+
         buffer.setWord(temp);
         tree.inserir(buffer);
       }
