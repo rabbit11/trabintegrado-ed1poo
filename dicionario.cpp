@@ -56,12 +56,15 @@ void Dicionario::importarDicionario(){
 
     arquivo.open("dic.txt");
 
-    if(arquivo.eof()){
-        throw "Dicionario vazio";
+    if(!arquivo.is_open()){
+        throw "Falha ao ler dicionário";
     }
 
     while(!arquivo.eof()){
         arquivo >> temp;
+        if(arquivo.gcount() == 0){
+            throw "Dicionario vazio";
+        }
         buffer.setWord(temp);
         tree.inserir(buffer);
       }
