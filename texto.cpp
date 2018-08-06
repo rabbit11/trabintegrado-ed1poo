@@ -30,7 +30,7 @@ bool Texto::carregarTexto() {
         for (it = palavra.begin(); it != palavra.end(); it++) {
             string temp = it->getWord();
             for (unsigned int i = 0; i < temp.length(); i++) {
-                if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= 192 && temp[i] <= 255))) {
+                if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
                     temp.erase(remove(temp.begin(), temp.end(), temp[i]), temp.end());
                 }
             }
@@ -106,7 +106,7 @@ void Texto::contexto(list<Palavra> :: iterator &it) const {
     list<Palavra> :: iterator fim;
     fim = palavraNoSymbol.end();
     advance(fim, -1);
-    for (temp = palavraNoSymbol.begin(); temp != palavraNoSymbol.end(); temp++) {
+    for (temp = palavraNoSymbol.begin(); temp != fim; temp++) {
         if(*temp == *it)
             break;
     }
