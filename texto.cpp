@@ -30,9 +30,14 @@ void Texto::carregarTexto() {
         for (it = palavra.begin(); it != palavra.end(); it++) {
             string temp = it->getWord();
             for (unsigned int i = 0; i < temp.length(); i++) {
+<<<<<<< HEAD
                 if (temp[i] >= 65 && temp[i] <= 90)
                     temp[i] = tolower(temp[i]);
 
+=======
+                temp[i] = tolower(temp[i]);
+                
+>>>>>>> 61b331e9ccd97beb45edeb27cd13c311f0f0796f
               if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
                     temp.erase(remove(temp.begin(), temp.end(), temp[i]), temp.end());
               }
@@ -80,6 +85,7 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
     it2 = palavra.begin();
 
     for(int i = 0; i < errada.getOcorrencias(); i++) {
+<<<<<<< HEAD
         for (; it != palavraNoSymbol.end(); it++, it2++) {
             string temp = it2->getWord();
             flag = false;
@@ -95,6 +101,21 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
             }
             if(*it == errada)
                 break;
+=======
+      for (; it != palavraNoSymbol.end(); it++, it2++) {
+        string temp = it2->getWord();
+        flag = false;
+        for (unsigned int i = 0; i < temp.length(); i++) {
+            temp[i] = tolower(temp[i]);
+          if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+              tempc = temp[i];
+              flag = true;
+              break;
+          }
+       }
+          if(it->getWord() == errada.getWord())
+              break;
+>>>>>>> 61b331e9ccd97beb45edeb27cd13c311f0f0796f
       }
       *it2 = correta;
       if (flag)
