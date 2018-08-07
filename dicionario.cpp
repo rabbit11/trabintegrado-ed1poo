@@ -20,7 +20,6 @@ Dicionario::Dicionario(){
     catch(const char* e){
         cout << e << endl;
     }
-
 }
 
 //destrutor da classe Dicionario, que exporta o dicionario como um todo
@@ -117,6 +116,16 @@ void Dicionario::resetSemelhantes(){
         semelhantes.clear();
     }
     else throw "Lista de semelhantes nao possui elementos.";
+}
+
+//função que retorna true para lista de semelhantes vazia e 0 para lista
+//de semelhantes não vazia
+bool Dicionario::semelhantesVazia(){
+    if(semelhantes.empty()){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 //função retorna a palavra para qual o iterador está apontando
