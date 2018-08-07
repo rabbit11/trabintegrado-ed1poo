@@ -7,9 +7,9 @@
 //****************
 
 //Sobrecarga do operador ==
-bool Palavra::operator== (const Palavra &op2){
+bool Palavra::operator== (Palavra &op2){
 
-	if(op2.word.compare(word) == 0)
+	if(op2.word == word)
 		return true;
 	return false;
 }
@@ -29,14 +29,17 @@ void Palavra::setWord(const string &p){
 	word = p;
 }
 
-void Palavra::incrementarOcorrencias(){
+//Incrementa o campo ocorrencia da classe palavra
+void Palavra::incrementarOcorrencia(){
 	ocorrencias++;
 }
 
+//Retorna o número de ocorrencias de determinada palavra
 int Palavra::getOcorrencias() const {
 	return ocorrencias;
 }
 
+//Sobrecarga do operador <<
 ostream& operator<<(ostream& os, const Palavra& a)
 {
     os << a.word;
