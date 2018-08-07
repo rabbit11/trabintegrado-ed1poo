@@ -21,6 +21,7 @@ int main(){
         if(corretor.getErros()){    //Verifica se existem erros
             cout << "Erros foram encontrados nas seguintes palavras: " << endl;
             corretor.exibeErros();  //Imprime lista de erros
+            cout << endl;
             int opc;
             string nova;
             while(!corretor.errosFim()){ //Retorna 0 se chega ao fim da lista de erros
