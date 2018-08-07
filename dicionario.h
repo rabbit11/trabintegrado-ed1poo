@@ -25,6 +25,7 @@ class Dicionario{
         void buscaSemelhantes(Palavra& p);
         void printSemelhantes();
         void resetSemelhantes();
+        bool semelhantesVazia();
         Palavra& getPalavra(deque<Palavra> :: iterator& it);
         Palavra& getPalavra(unsigned i);
 
