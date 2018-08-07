@@ -87,13 +87,13 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
             for (unsigned int i = 0; i < temp.length(); i++) {
                 if (temp[i] >= 65 && temp[i] <= 90)
                     temp[i] = tolower(temp[i]);
-                if (!( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+                if (!((temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
                     tempc = temp[i];
                     flag = true;
                     break;
                 }
             }
-            if(it->getWord() == errada.getWord())
+            if(*it == errada)
                 break;
       }
       *it2 = correta;
