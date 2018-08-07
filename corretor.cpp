@@ -16,7 +16,6 @@ void Corretor::verificarTexto(){
                 erros.push_back(text.getPalavra(temp));         //Acrescenta a palavra na lista de erros
             it = find(erros.begin(), erros.end(), text.getPalavra(temp)); //Encontra o apontador do erro na lista de erros
             (*it).incrementarOcorrencias();     //Acrescenta o numero de ocorrencias do erro
-            // cout << text.getPalavra(temp).getWord() << " > " << text.getPalavra(temp).getOcorrencias() << endl;
         }
         advance(temp, 1);
     }
@@ -72,9 +71,12 @@ void Corretor::salvarTexto(const string &n){
 }
 
 //Envia palavra para o dicionario encontrar sugestoes e as exibe
-void Corretor::mostrarSemelhantes(Palavra a){
-    dic.buscaSemelhantes(a);
+void Corretor::mostrarSemelhantes(){
     dic.printSemelhantes();
+}
+
+void Corretor::buscaSemelhantes(Palavra a){
+    dic.buscaSemelhantes(a);
 }
 
 //Recebe a palavra errada e o numero da sugestao escolhida
@@ -95,4 +97,11 @@ void Corretor::mostrarOcorrencias(Palavra a){
 void Corretor::carregarTexto(const string &s) {
     text.setLoad(s);
     text.carregarTexto();
+}
+
+bool Corretor::semelhantesVazia(){
+    if(dic.semelhantesVazia())
+        return true;
+    else
+        return false;
 }
