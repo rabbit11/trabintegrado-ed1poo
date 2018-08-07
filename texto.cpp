@@ -76,26 +76,28 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
     list<Palavra> :: iterator it2;
     bool flag = false;
     char tempc;
+    it = palavraNoSymbol.begin();
+    it2 = palavra.begin();
 
     for(int i = 0; i < errada.getOcorrencias(); i++) {
-      for (it = palavraNoSymbol.begin(), it2 = palavra.begin(); it != palavraNoSymbol.end() && it2 != palavra.end(); it++, it2++) {
+      for (; it != palavraNoSymbol.end(); it++, it2++) {
         string temp = it2->getWord();
         flag = false;
         for (unsigned int i = 0; i < temp.length(); i++) {
           if (temp[i] >= 65 && temp[i] <= 90)
             temp[i] = tolower(temp[i]);
-            if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
-                tempc = temp[i];
-                flag = true;
-                break;
-            }
-        }
+          if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+              tempc = temp[i];
+              flag = true;
+              break;
+          }
+       }
           if(it->getWord() == errada.getWord())
               break;
       }
       *it2 = correta;
       if (flag)
-        it2->setWord(it->getWord() + tempc);
+        it2->setWord(it2->getWord() + tempc);
   }
 }
 
