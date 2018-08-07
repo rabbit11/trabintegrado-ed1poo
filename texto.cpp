@@ -84,35 +84,25 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
             string temp = it2->getWord();
             flag = false;
 
-            for (unsigned int i = 0; i < temp.length(); i++) {
-                    temp[i] = tolower(temp[i]);
-                if (!((temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+            for (; it != palavraNoSymbol.end(); it++, it2++) {
+              string temp = it2->getWord();
+              flag = false;
+              for (unsigned int i = 0; i < temp.length(); i++) {
+                  temp[i] = tolower(temp[i]);
+                if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
                     tempc = temp[i];
                     flag = true;
                     break;
                 }
+             }
+                if(it->getWord() == errada.getWord())
+                    break;
             }
-            if(*it == errada)
-                break;
-
-      for (; it != palavraNoSymbol.end(); it++, it2++) {
-        string temp = it2->getWord();
-        flag = false;
-        for (unsigned int i = 0; i < temp.length(); i++) {
-            temp[i] = tolower(temp[i]);
-          if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
-              tempc = temp[i];
-              flag = true;
-              break;
-          }
-       }
-          if(it->getWord() == errada.getWord())
-              break;
-      }
-      *it2 = correta;
-      if (flag)
-      it2->setWord(it2->getWord() + tempc);
-  }
+            *it2 = correta;
+            if (flag)
+            it2->setWord(it2->getWord() + tempc);
+        }
+}
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------
@@ -145,34 +135,33 @@ Palavra& Texto::getPalavra(const list<Palavra> :: iterator &it) const {
 void Texto::contexto(list<Palavra> :: iterator &it) {
 
     list<Palavra> :: iterator temp;
-    list<Palavra> :: iterator temp2;
     list<Palavra> :: iterator fim;
     fim = palavraNoSymbol.end();
     advance(fim, -1);
-    for (temp = palavraNoSymbol.begin(), temp2 = palavraNoSymbol.begin(); temp != fim; temp++, temp2++) {
+    for (temp = palavraNoSymbol.begin(); temp != fim; temp++) {
         if(*temp == *it)
             break;
     }
 
     if (temp == palavraNoSymbol.begin()) {
-        cout << *temp2 << " ";
-        advance(temp2, 1);
-        cout << *temp2 << endl;
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << endl;
     }
     else if (temp == fim) {
-        advance(temp2, -1);
-        cout << *temp2 << " ";
-        advance(temp2, 1);
-        cout << *temp2 << endl;
+        advance(temp, -1);
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << endl;
 
     }
     else {
-        advance(temp2, -1);
-        cout << *temp2 << " ";
-        advance(temp2, 1);
-        cout << *temp2 << " ";
-        advance(temp2, 1);
-        cout << *temp2 << endl;
+        advance(temp, -1);
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << " ";
+        advance(temp, 1);
+        cout << *temp << endl;
     }
 }
 
