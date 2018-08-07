@@ -37,6 +37,7 @@ int main(){
                 cout << "4- Ignorar erro" << endl;
                 cin >> opc;
 
+
                 switch (opc) {
                     case 1:
                         corretor.adicionarEx(corretor.erroAtual());  //Adiciona palavra ao dicionario
@@ -44,11 +45,18 @@ int main(){
                         break;
 
                     case 2:
-                        corretor.mostrarSemelhantes(corretor.erroAtual()); //Exibe lista de sugestoes
-                        cout << "Selecione sugestao: " << endl;
-                        cin >> opc;
-                        corretor.corrigirSemelhante(corretor.erroAtual(), opc); //Corrige palavra usando sugestao
-
+                        corretor.buscaSemelhantes(corretor.erroAtual()); //Busca sugestoes
+                        if(!corretor.semelhantesVazia()){
+                            cout << "Selecione sugestao: " << endl;
+                            corretor.mostrarSemelhantes();
+                            cin >> opc;
+                            corretor.corrigirSemelhante(corretor.erroAtual(), opc); //Corrige palavra usando sugestao
+                        }
+                        else{
+                            cout << "Nao foram encontradas sugestoes. Insira correcao: ";
+                            cin >> nova;
+                            corretor.corrigirPalavra(nova, corretor.erroAtual());
+                        }
                         break;
 
                     case 3:

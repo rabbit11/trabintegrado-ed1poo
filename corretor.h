@@ -18,20 +18,29 @@ class Corretor{
         list<Palavra> :: iterator it;
 
     public:
+        //Integracao com Texto
+        void carregarTexto(const string &);
+        void salvarTexto(const string &);
         void verificarTexto();
-        bool getErros();
-        void exibeErros();
         void corrigirPalavra(string, Palavra);
-        Palavra erroAtual();
+        void mostrarContexto(Palavra);
+
+        //Integracao com Palavra
+        void mostrarOcorrencias(Palavra a);
+
+        //Integracao com Dicionario
         void adicionarEx(Palavra);
+        void mostrarSemelhantes();
+        void corrigirSemelhante(Palavra, int);
+        bool semelhantesVazia();
+        void buscaSemelhantes(Palavra a);
+
+        //Interface da lista de erros
+        Palavra erroAtual();
         bool errosFim();
         void errosProx();
-        void salvarTexto(const string &);
-        void mostrarSemelhantes(Palavra);
-        void corrigirSemelhante(Palavra, int);
-        void mostrarContexto(Palavra);
-        void carregarTexto(const string &);
-        void mostrarOcorrencias(Palavra a);
+        bool getErros();
+        void exibeErros();
 };
 
 #endif

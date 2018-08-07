@@ -13,7 +13,7 @@ using namespace std;
 //e importa um Dicionario de um arquivo .txt
 Dicionario::Dicionario(){
     mudou = false;
-
+    
     try{
         importarDicionario();
     }
@@ -144,9 +144,6 @@ Palavra& Dicionario::getPalavra(unsigned i){
 //imprime lista de palavras semelhantes
 void Dicionario::printSemelhantes(){
 
-    if(semelhantes.empty()){
-        throw "Nao foram encontradas palavras semelhantes.";
-    }
     int tamanho = semelhantes.size();
     for(int i = 0;  i < 7 && i < tamanho; i++){
         Palavra temp = semelhantes[i];
