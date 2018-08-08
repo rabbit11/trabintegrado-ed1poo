@@ -16,7 +16,9 @@ class Dicionario{
         bool mudou;
         deque<Palavra> semelhantes;
     public:
-        Dicionario();
+        Dicionario(){
+            mudou = false;
+        }
         bool consulta(Palavra& p);
         void inserirPalavra(Palavra& p);
         void importarDicionario();

@@ -8,14 +8,6 @@
 
 using namespace std;
 
-
-//construtor default da classe Dicionario, que inicializa a variável "mudou"
-//e importa um Dicionario de um arquivo .txt
-Dicionario::Dicionario(){
-    mudou = false;
-
-}
-
 //função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
 //retorna false para palavra não encontrada e true para palavra encontrada
 bool Dicionario::consulta(Palavra& p){
