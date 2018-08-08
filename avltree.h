@@ -31,7 +31,6 @@ class AvlTree{
         }
 
     private:
-        void printInOrder(no*);
         int busca(no*, Palavra&);
         int busca(no*, Palavra&, deque<Palavra>&);
         no *inserir(no*, Palavra&);
