@@ -87,7 +87,6 @@ void Dicionario::resetSemelhantes(){
     if(!semelhantes.empty()){
         semelhantes.clear();
     }
-    else throw "Lista de semelhantes nao possui elementos.";
 }
 
 //função que retorna true para lista de semelhantes vazia e 0 para lista
