@@ -79,10 +79,24 @@ void Corretor::buscaSemelhantes(Palavra a){
     dic.buscaSemelhantes(a);
 }
 
+void Corretor::importarDicionario(){
+    dic.importarDicionario();
+}
+
+void Corretor::exportarDicionario(){
+    dic.exportarDicionario();
+}
+
 //Recebe a palavra errada e o numero da sugestao escolhida
 void Corretor::corrigirSemelhante(Palavra errada, int i){
     text.alterarPalavra(errada, dic.getPalavra(i));
-    dic.resetSemelhantes();
+
+    try{
+        dic.resetSemelhantes();
+    }
+    catch(const char* e){
+        cout << e << endl;
+    }
 }
 
 //Imprime a palavra anterior e posterior ao erro
