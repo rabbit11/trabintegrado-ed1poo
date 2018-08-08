@@ -34,6 +34,8 @@ class Corretor{
         void corrigirSemelhante(Palavra, int);
         bool semelhantesVazia();
         void buscaSemelhantes(Palavra a);
+        void importarDicionario();
+        void exportarDicionario();
 
         //Interface da lista de erros
         Palavra erroAtual();
