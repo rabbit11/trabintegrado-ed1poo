@@ -17,7 +17,6 @@ class Dicionario{
         deque<Palavra> semelhantes;
     public:
         Dicionario();
-        ~Dicionario();
         bool consulta(Palavra& p);
         void inserirPalavra(Palavra& p);
         void importarDicionario();

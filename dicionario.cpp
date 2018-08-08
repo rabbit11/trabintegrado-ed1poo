@@ -13,25 +13,7 @@ using namespace std;
 //e importa um Dicionario de um arquivo .txt
 Dicionario::Dicionario(){
     mudou = false;
-    
-    try{
-        importarDicionario();
-    }
-    catch(const char* e){
-        cout << e << endl;
-    }
-}
 
-//destrutor da classe Dicionario, que exporta o dicionario como um todo
-//de volta para o arquivo .txt
-Dicionario::~Dicionario(){
-
-    try{
-        exportarDicionario();
-    }
-    catch(const char* e){
-        cout << e << endl;
-    }
 }
 
 //função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
@@ -92,8 +74,6 @@ void Dicionario::exportarDicionario(){
                 arquivo << temp << endl;
                 s.pop();
             }
-        }else{
-            throw "Falha ao exportar Dicionario";
         }
         arquivo.close();
     }
@@ -138,7 +118,6 @@ Palavra& Dicionario::getPalavra(unsigned i){
     if(i < semelhantes.size() && i <= 6){
         return semelhantes[i];
     }
-    else throw "Indice inserido invalido";
 }
 
 //imprime lista de palavras semelhantes
