@@ -37,7 +37,7 @@ int Palavra::getOcorrencias() const {
 	return ocorrencias;
 }
 
-ostream& operator<<(ostream& os, const Palavra& a)
+wostream& operator<<(wostream& os, const Palavra& a)
 {
     os << a.word;
     return os;

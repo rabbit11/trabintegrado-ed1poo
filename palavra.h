@@ -14,7 +14,7 @@ public:
 	int compara(Palavra &);
 	wstring getWord() const;
 	void setWord(const wstring&);
-	friend ostream & operator << (ostream &out, const Palavra &);
+	friend wostream & operator << (wostream &out, const Palavra &);
 	int getOcorrencias() const;
 	void incrementarOcorrencias();
 
