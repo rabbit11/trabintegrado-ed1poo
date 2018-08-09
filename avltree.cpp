@@ -168,7 +168,7 @@ int AvlTree::busca(no* raiz, Palavra& p, deque<Palavra>& semelhantes){
         if(p.getWord().size() < 2){
             return 0;
         }
-        string first_second = p.getWord();
+        wstring first_second = p.getWord();
         first_second = first_second.substr(0,2);
         no* temp = raiz;
 

@@ -22,7 +22,7 @@ class Corretor{
         void carregarTexto(const string &);
         void salvarTexto(const string &);
         void verificarTexto();
-        void corrigirPalavra(string, Palavra);
+        void corrigirPalavra(wstring, Palavra);
         void mostrarContexto(Palavra);
 
         //Integracao com Palavra
