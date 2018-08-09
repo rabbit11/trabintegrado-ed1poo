@@ -90,13 +90,7 @@ void Corretor::exportarDicionario(){
 //Recebe a palavra errada e o numero da sugestao escolhida
 void Corretor::corrigirSemelhante(Palavra errada, int i){
     text.alterarPalavra(errada, dic.getPalavra(i));
-
-    try{
-        dic.resetSemelhantes();
-    }
-    catch(const char* e){
-        cout << e << endl;
-    }
+    dic.resetSemelhantes();
 }
 
 //Imprime a palavra anterior e posterior ao erro
@@ -110,7 +104,8 @@ void Corretor::mostrarOcorrencias(Palavra a){
 //Recebe nome do arquivo e o carrega
 void Corretor::carregarTexto(const string &s) {
     text.setLoad(s);
-    text.carregarTexto();
+    if(!text.carregarTexto())
+        throw "Texto invalido, tchau!";
 }
 
 bool Corretor::semelhantesVazia(){

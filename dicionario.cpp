@@ -106,16 +106,17 @@ Palavra& Dicionario::getPalavra(deque<Palavra> :: iterator& it){
 
 //função retorna uma palavra do deque de acordo com o índice fornecido
 Palavra& Dicionario::getPalavra(unsigned i){
-    if(i < semelhantes.size() && i <= 6){
+    if(i < semelhantes.size() && i <= 10){
         return semelhantes[i];
     }
+    else throw "Indice invalido, tchau!";
 }
 
 //imprime lista de palavras semelhantes
 void Dicionario::printSemelhantes(){
 
     int tamanho = semelhantes.size();
-    for(int i = 0;  i < 7 && i < tamanho; i++){
+    for(int i = 0;  i < 11 && i < tamanho; i++){
         Palavra temp = semelhantes[i];
         wstring aux = temp.getWord();
         wcout << i << "." << aux << endl;

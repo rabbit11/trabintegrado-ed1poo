@@ -21,7 +21,13 @@ int main(){
 
     cout << "Digite o nome do arquivo a ser corrigido" << endl;
     cin >> name;
-    corretor.carregarTexto(name);
+    try{
+        corretor.carregarTexto(name);
+    }
+    catch(const char* e){
+        cout << e << endl;
+        return 0;
+    }
     cout << "Iniciar correcao do texto? (y/n)" << endl;
     cin >> sory;
 
@@ -60,7 +66,13 @@ int main(){
                             cout << "Selecione sugestao: " << endl;
                             corretor.mostrarSemelhantes();
                             cin >> opc;
-                            corretor.corrigirSemelhante(corretor.erroAtual(), opc); //Corrige palavra usando sugestao
+                            try{
+                                corretor.corrigirSemelhante(corretor.erroAtual(), opc); //Corrige palavra usando sugestao
+                            }
+                            catch(const char* e){
+                                cout << e << endl;
+                                return 0;
+                            }
                         }
                         else{
                             cout << "Nao foram encontradas sugestoes. Insira correcao: ";

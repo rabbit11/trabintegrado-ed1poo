@@ -13,7 +13,7 @@ using namespace std;
 /*-------------------------------------------------------------------------------------------------------------------------------
      carregarTexto: Funcao para carregar o arquivo .txt para a correcao. Retorna uma excecao caso o arquivo nao seja encontrado.
 -------------------------------------------------------------------------------------------------------------------------------*/
-void Texto::carregarTexto() {
+bool Texto::carregarTexto() {
 
     //Carrega o arquivo a ser corrigido
     wstring plv;
@@ -41,8 +41,9 @@ void Texto::carregarTexto() {
             palavraNoSymbol.push_back(p);
         }
     }
+    else return false;
 
-    else throw "Arquivo nao encontrado";
+    return true;
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------
