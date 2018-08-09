@@ -41,7 +41,7 @@ int main(){
             wstring nova;
             while(!corretor.errosFim()){ //Retorna 0 se chega ao fim da lista de erros
                 opc = 0;
-                wcout << "Erro: " << corretor.erroAtual().getWord() << endl; //Retorna a Palavra erro atual da lista
+                wcout << "Erro: " << corretor.erroAtual() << endl; //Retorna a Palavra erro atual da lista
                 cout << "Ocorrencias: ";
                 corretor.mostrarOcorrencias(corretor.erroAtual());
                 cout << "Contexto: ";
@@ -93,11 +93,22 @@ int main(){
             }
         }
     }
+    else {
+      cout << "Tchau!" << endl;
+      return 0;
+    }
+
     string n;
     corretor.exportarDicionario();
     cout << "Digite o nome do arquivo a ser exportado" << endl;
     cin >> n;
-    corretor.salvarTexto(n); //Exporta arquivo de texto corrigido
+    try {
+      corretor.salvarTexto(n); //Exporta arquivo de texto corrigido
+    }
+    catch (const char *e) {
+      cout << e << endl;
+      return 0;
+    }
     cout << "Arquivo corrigido exportado. Bye!" << endl;
     return 0;
 }

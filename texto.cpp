@@ -49,7 +49,7 @@ bool Texto::carregarTexto() {
 /*-------------------------------------------------------------------------------------------------------------------------------
      salvarTexto: Funcao para salvar o arquivo .txt corrigido. Retorna uma excecao caso nao seja possivel salvar o arquivo
 -------------------------------------------------------------------------------------------------------------------------------*/
-void Texto::salvarTexto() {
+bool Texto::salvarTexto() {
 
     //Salva todas palavras da lista em um arquivo
     if (!palavra.empty()) {
@@ -59,11 +59,12 @@ void Texto::salvarTexto() {
         if(arq.is_open()) {
             list<Palavra> :: iterator it;
             for (it = palavra.begin(); it != palavra.end(); it++) {
-                arq << it->getWord() << L" ";
+                arq << *it << L" ";
             }
             arq.close();
+            return true;
         }
-        else throw "Nao foi possivel salvar o arquivo";
+        return false;
     }
 }
 
@@ -147,24 +148,24 @@ void Texto::contexto(list<Palavra> :: iterator &it) {
     }
 
     if (temp == palavraNoSymbol.begin()) {
-        wcout << temp->getWord() << " ";
+        wcout << *temp << " ";
         advance(temp, 1);
-        wcout << temp->getWord() << endl;
+        wcout << *temp << endl;
     }
     else if (temp == fim) {
         advance(temp, -1);
-        wcout << temp->getWord() << " ";
+        wcout << *temp << " ";
         advance(temp, 1);
-        wcout << temp->getWord() << endl;
+        wcout << *temp << endl;
 
     }
     else {
         advance(temp, -1);
-        wcout << temp->getWord() << " ";
+        wcout << *temp << " ";
         advance(temp, 1);
-        wcout << temp->getWord() << " ";
+        wcout << *temp << " ";
         advance(temp, 1);
-        wcout << temp->getWord() << endl;
+        wcout << *temp << endl;
     }
 }
 

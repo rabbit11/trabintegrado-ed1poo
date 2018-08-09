@@ -57,6 +57,7 @@ void Dicionario::exportarDicionario(){
         stack <Palavra>s;
         wstring temp;
         wofstream arquivo;
+        arquivo.open("dic.txt");
 
         s = tree.inOrderPublic();
 
