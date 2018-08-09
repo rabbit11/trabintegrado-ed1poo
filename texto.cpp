@@ -16,8 +16,8 @@ using namespace std;
 void Texto::carregarTexto() {
 
     //Carrega o arquivo a ser corrigido
-    string plv;
-    ifstream arq;
+    wstring plv;
+    wifstream arq;
     arq.open(load.c_str(), ios::in);
 
     if(arq.is_open()) {
@@ -52,13 +52,13 @@ void Texto::salvarTexto() {
 
     //Salva todas palavras da lista em um arquivo
     if (!palavra.empty()) {
-        ofstream arq;
+        wofstream arq;
         arq.open(save.c_str(), ios::out | ios::trunc);
 
         if(arq.is_open()) {
             list<Palavra> :: iterator it;
             for (it = palavra.begin(); it != palavra.end(); it++) {
-                arq << *it << " ";
+                arq << it->getWord() << L" ";
             }
             arq.close();
         }
@@ -73,33 +73,39 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
 
     list<Palavra> :: iterator it;
     list<Palavra> :: iterator it2;
-    bool symbol = false;
-    char tempc;
+    bool symbol, symbolStart;
+    wchar_t tempc, tempc2;
     it = palavraNoSymbol.begin();
     it2 = palavra.begin();
 
-    for (; it != palavraNoSymbol.end() && it2 != palavra.end(); it++, it2++) {
-        string temp = it2->getWord();
+    for (; it != palavraNoSymbol.end(); it++, it2++) {
+        wstring temp = it2->getWord();
         symbol = false;
-        for (; it != palavraNoSymbol.end(); it++, it2++) {
-            string temp = it2->getWord();
-            symbol = false;
-            for (unsigned int i = 0; i < temp.length(); i++) {
-                temp[i] = tolower(temp[i]);
-                if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= 192 && temp[i] <= 255))) {
-                    tempc = temp[i];
-                    symbol = true;
-                    break;
-                }
-             }
-            if(*it == *errada)
-                break;
-            }
+        symbolStart = false;
+        for (unsigned int i = 0; i < temp.length(); i++)
+            temp[i] = tolower(temp[i]);
+
+        if ( !( (temp[0] >= 97 && temp[0] <= 122) || (temp[0] >= 192 && temp[0] <= 255))) {
+            tempc2 = temp[0];
+            symbolStart = true;
+        }
+
+        int s = temp.length() - 1;
+        if ( !( (temp[s] >= 97 && temp[s] <= 122) || (temp[s] >= 192 && temp[s] <= 255))) {
+            tempc = temp[s];
+            symbol = true;
+        }
+
+        if(*it == errada) {
             *it2 = correta;
             if (symbol)
                 it2->setWord(it2->getWord() + tempc);
+            if (symbolStart)
+                it2->setWord(tempc2 + it2->getWord());
         }
-}
+    }
+
+  }
 
 /*-------------------------------------------------------------------------------------------------------------------------------
      getPrimeiro: retorna um iterador para o elemento de primeira posição na list
@@ -140,24 +146,24 @@ void Texto::contexto(list<Palavra> :: iterator &it) {
     }
 
     if (temp == palavraNoSymbol.begin()) {
-        cout << *temp << " ";
+        wcout << temp->getWord() << " ";
         advance(temp, 1);
-        cout << *temp << endl;
+        wcout << temp->getWord() << endl;
     }
     else if (temp == fim) {
         advance(temp, -1);
-        cout << *temp << " ";
+        wcout << temp->getWord() << " ";
         advance(temp, 1);
-        cout << *temp << endl;
+        wcout << temp->getWord() << endl;
 
     }
     else {
         advance(temp, -1);
-        cout << *temp << " ";
+        wcout << temp->getWord() << " ";
         advance(temp, 1);
-        cout << *temp << " ";
+        wcout << temp->getWord() << " ";
         advance(temp, 1);
-        cout << *temp << endl;
+        wcout << temp->getWord() << endl;
     }
 }
 

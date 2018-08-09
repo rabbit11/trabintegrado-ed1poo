@@ -31,12 +31,12 @@ bool Corretor::getErros(){
 void Corretor::exibeErros(){
     list<Palavra> :: iterator temp;
     for(temp = erros.begin(); temp != erros.end(); temp++){
-        cout << *temp << endl;
+        wcout << temp->getWord() << endl;
     }
 }
 
 //Envia a palavra nova e a palavra a ser substituida
-void Corretor::corrigirPalavra(string a, Palavra b){
+void Corretor::corrigirPalavra(wstring a, Palavra b){
     Palavra nova(a);
     text.alterarPalavra(b, nova);
 }

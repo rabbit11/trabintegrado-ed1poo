@@ -32,10 +32,10 @@ int main(){
             corretor.exibeErros();  //Imprime lista de erros
             cout << endl;
             int opc;
-            string nova;
+            wstring nova;
             while(!corretor.errosFim()){ //Retorna 0 se chega ao fim da lista de erros
                 opc = 0;
-                cout << "Erro: " << corretor.erroAtual() << endl; //Retorna a Palavra erro atual da lista
+                wcout << "Erro: " << corretor.erroAtual().getWord() << endl; //Retorna a Palavra erro atual da lista
                 cout << "Ocorrencias: ";
                 corretor.mostrarOcorrencias(corretor.erroAtual());
                 cout << "Contexto: ";
@@ -64,13 +64,13 @@ int main(){
                         }
                         else{
                             cout << "Nao foram encontradas sugestoes. Insira correcao: ";
-                            cin >> nova;
+                            wcin >> nova;
                             corretor.corrigirPalavra(nova, corretor.erroAtual());
                         }
                         break;
 
                     case 3:
-                        cin >> nova;
+                        wcin >> nova;
                         corretor.corrigirPalavra(nova, corretor.erroAtual()); //Corrige palavra usando string inserida
                         break;
 

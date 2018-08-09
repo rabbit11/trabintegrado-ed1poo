@@ -9,11 +9,11 @@ using namespace std;
 class Palavra {
 
 public:
-	Palavra(wstring palavra = "") : word(palavra), ocorrencias(0);
+	Palavra(wstring palavra = L"") : word(palavra), ocorrencias(0) {};
 	bool operator== (const Palavra &);
 	int compara(Palavra &);
 	wstring getWord() const;
-	void setWord(const string&);
+	void setWord(const wstring&);
 	friend ostream & operator << (ostream &out, const Palavra &);
 	int getOcorrencias() const;
 	void incrementarOcorrencias();

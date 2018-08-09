@@ -24,8 +24,8 @@ void Dicionario::inserirPalavra(Palavra& p){
 //funçao que carrega Dicionario a partir de um arquivo .txt e o insere na árvore
 void Dicionario::importarDicionario(){
     Palavra buffer;
-    string temp;
-    ifstream arquivo;
+    wstring temp;
+    wifstream arquivo;
 
     arquivo.open("dic.txt");
 
@@ -55,8 +55,8 @@ void Dicionario::importarDicionario(){
 void Dicionario::exportarDicionario(){
     if(mudou == true){
         stack <Palavra>s;
-        string temp;
-        ofstream arquivo;
+        wstring temp;
+        wofstream arquivo;
 
         s = tree.inOrderPublic();
 
@@ -117,8 +117,8 @@ void Dicionario::printSemelhantes(){
     int tamanho = semelhantes.size();
     for(int i = 0;  i < 7 && i < tamanho; i++){
         Palavra temp = semelhantes[i];
-        string aux = temp.getWord();
-        cout << i << "." << aux << endl;
+        wstring aux = temp.getWord();
+        wcout << i << "." << aux << endl;
 
     }
 }
