@@ -20,12 +20,12 @@ int Palavra::compara(Palavra &plv2){
 }
 
 //Retorna o atributo string word
-string Palavra::getWord() const {
+wstring Palavra::getWord() const {
 	return word;
 }
 
 //Altera o valor do atributo string word
-void Palavra::setWord(const string &p){
+void Palavra::setWord(const wstring &p){
 	word = p;
 }
 

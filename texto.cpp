@@ -14,10 +14,11 @@ using namespace std;
      carregarTexto: Funcao para carregar o arquivo .txt para a correcao. Retorna uma excecao caso o arquivo nao seja encontrado.
 -------------------------------------------------------------------------------------------------------------------------------*/
 void Texto::carregarTexto() {
-    string plv;
 
+    //Carrega o arquivo a ser corrigido
+    string plv;
     ifstream arq;
-    arq.open(load, ios::in);
+    arq.open(load.c_str(), ios::in);
 
     if(arq.is_open()) {
         while (arq >> plv) {
@@ -26,14 +27,13 @@ void Texto::carregarTexto() {
         }
         arq.close();
 
+        //Remove da lista noSymbol símbolos irrelevantes e deixa as letras minúsculas
         list<Palavra> :: iterator it;
         for (it = palavra.begin(); it != palavra.end(); it++) {
-            string temp = it->getWord();
+            wstring temp = it->getWord();
             for (unsigned int i = 0; i < temp.length(); i++) {
                     temp[i] = tolower(temp[i]);
-                temp[i] = tolower(temp[i]);
-
-              if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+            if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= 192 && temp[i] <= 255))) {
                     temp.erase(remove(temp.begin(), temp.end(), temp[i]), temp.end());
               }
             }
@@ -49,9 +49,11 @@ void Texto::carregarTexto() {
      salvarTexto: Funcao para salvar o arquivo .txt corrigido. Retorna uma excecao caso nao seja possivel salvar o arquivo
 -------------------------------------------------------------------------------------------------------------------------------*/
 void Texto::salvarTexto() {
+
+    //Salva todas palavras da lista em um arquivo
     if (!palavra.empty()) {
         ofstream arq;
-        arq.open(save, ios::out | ios::trunc);
+        arq.open(save.c_str(), ios::out | ios::trunc);
 
         if(arq.is_open()) {
             list<Palavra> :: iterator it;
@@ -60,11 +62,8 @@ void Texto::salvarTexto() {
             }
             arq.close();
         }
-
         else throw "Nao foi possivel salvar o arquivo";
-
     }
-    else throw "A lista esta vazia";
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------
@@ -74,35 +73,32 @@ void Texto::alterarPalavra(const Palavra &errada, const Palavra &correta) {
 
     list<Palavra> :: iterator it;
     list<Palavra> :: iterator it2;
-    bool flag = false;
+    bool symbol = false;
     char tempc;
     it = palavraNoSymbol.begin();
     it2 = palavra.begin();
 
-    for(int i = 0; i < errada.getOcorrencias(); i++) {
+    for (; it != palavraNoSymbol.end() && it2 != palavra.end(); it++, it2++) {
+        string temp = it2->getWord();
+        symbol = false;
         for (; it != palavraNoSymbol.end(); it++, it2++) {
             string temp = it2->getWord();
-            flag = false;
-
-            for (; it != palavraNoSymbol.end(); it++, it2++) {
-              string temp = it2->getWord();
-              flag = false;
-              for (unsigned int i = 0; i < temp.length(); i++) {
-                  temp[i] = tolower(temp[i]);
-                if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= -128 && temp[i] <= 0))) {
+            symbol = false;
+            for (unsigned int i = 0; i < temp.length(); i++) {
+                temp[i] = tolower(temp[i]);
+                if ( !( (temp[i] >= 97 && temp[i] <= 122) || (temp[i] >= 192 && temp[i] <= 255))) {
                     tempc = temp[i];
-                    flag = true;
+                    symbol = true;
                     break;
                 }
              }
-                if(it->getWord() == errada.getWord())
-                    break;
+            if(*it == *errada)
+                break;
             }
             *it2 = correta;
-            if (flag)
-            it2->setWord(it2->getWord() + tempc);
+            if (symbol)
+                it2->setWord(it2->getWord() + tempc);
         }
-}
 }
 
 /*-------------------------------------------------------------------------------------------------------------------------------
