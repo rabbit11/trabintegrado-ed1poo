@@ -31,7 +31,7 @@ bool Corretor::getErros(){
 void Corretor::exibeErros(){
     list<Palavra> :: iterator temp;
     for(temp = erros.begin(); temp != erros.end(); temp++){
-        wcout << temp->getWord() << endl;
+        wcout << *temp << endl;
     }
 }
 
@@ -67,7 +67,8 @@ void Corretor::errosProx(){
 //Recebe o nome do arquivo a ser salvo e envia para o texto
 void Corretor::salvarTexto(const string &n){
     text.setSave(n);
-    text.salvarTexto();
+    if(!text.salvarTexto())
+        throw "Nao foi possivel salvar o arquivo";
 }
 
 //Envia palavra para o dicionario encontrar sugestoes e as exibe

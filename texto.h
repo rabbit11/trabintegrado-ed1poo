@@ -19,7 +19,7 @@ public:
 	Texto(string s1 = "text.txt", string s2 = "save.txt") : load(s1), save(s2) {};
 	bool carregarTexto();
 	void alterarPalavra(const Palavra&, const Palavra&);
-	void salvarTexto();
+	bool salvarTexto();
 	bool ultimo(const list<Palavra> :: iterator&) const;
 	list<Palavra> :: iterator getPrimeiro();
 	Palavra& getPalavra(const list<Palavra> :: iterator&) const;
