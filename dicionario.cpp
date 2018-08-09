@@ -8,6 +8,33 @@
 
 using namespace std;
 
+
+//construtor default da classe Dicionario, que inicializa a variável "mudou"
+//e importa um Dicionario de um arquivo .txt
+Dicionario::Dicionario(){
+    mudou = false;
+
+    try{
+        importarDicionario();
+    }
+    catch(string e){
+        cout << e << endl;
+    }
+
+}
+
+//destrutor da classe Dicionario, que exporta o dicionario como um todo
+//de volta para o arquivo .txt
+Dicionario::~Dicionario(){
+
+    try{
+        exportarDicionario();
+    }
+    catch(string e){
+        cout << e << endl;
+    }
+}
+
 //função que permite ao usuário efetuar a consulta de uma palavra no exportarDicionario
 //retorna false para palavra não encontrada e true para palavra encontrada
 bool Dicionario::consulta(Palavra& p){
@@ -24,22 +51,17 @@ void Dicionario::inserirPalavra(Palavra& p){
 //funçao que carrega Dicionario a partir de um arquivo .txt e o insere na árvore
 void Dicionario::importarDicionario(){
     Palavra buffer;
-    wstring temp;
-    wifstream arquivo;
+    string temp;
+    ifstream arquivo;
 
     arquivo.open("dic.txt");
 
-    if(!arquivo.is_open()){
-        throw "Falha ao ler dicionário";
+    if(arquivo.eof()){
+        throw "Dicionario vazio";
     }
 
     while(!arquivo.eof()){
         arquivo >> temp;
-
-        if(temp.size() == 0){
-            throw "Dicionario vazio";
-        }
-
         buffer.setWord(temp);
         tree.inserir(buffer);
       }
@@ -55,9 +77,8 @@ void Dicionario::importarDicionario(){
 void Dicionario::exportarDicionario(){
     if(mudou == true){
         stack <Palavra>s;
-        wstring temp;
-        wofstream arquivo;
-        arquivo.open("dic.txt");
+        string temp;
+        ofstream arquivo;
 
         s = tree.inOrderPublic();
 
@@ -67,6 +88,8 @@ void Dicionario::exportarDicionario(){
                 arquivo << temp << endl;
                 s.pop();
             }
+        }else{
+            throw "Falha ao exportar Dicionario";
         }
         arquivo.close();
     }
@@ -88,16 +111,7 @@ void Dicionario::resetSemelhantes(){
     if(!semelhantes.empty()){
         semelhantes.clear();
     }
-}
-
-//função que retorna true para lista de semelhantes vazia e 0 para lista
-//de semelhantes não vazia
-bool Dicionario::semelhantesVazia(){
-    if(semelhantes.empty()){
-        return true;
-    }else{
-        return false;
-    }
+    else throw "Lista de semelhantes nao possui elementos.";
 }
 
 //função retorna a palavra para qual o iterador está apontando
@@ -107,20 +121,23 @@ Palavra& Dicionario::getPalavra(deque<Palavra> :: iterator& it){
 
 //função retorna uma palavra do deque de acordo com o índice fornecido
 Palavra& Dicionario::getPalavra(unsigned i){
-    if(i < semelhantes.size() && i <= 10){
+    if(i < semelhantes.size() && i <= 6){
         return semelhantes[i];
     }
-    else throw "Indice invalido, tchau!";
+    else throw "Indice inserido invalido";
 }
 
 //imprime lista de palavras semelhantes
 void Dicionario::printSemelhantes(){
 
+    if(semelhantes.empty()){
+        throw "Nao foram encontradas palavras semelhantes.";
+    }
     int tamanho = semelhantes.size();
-    for(int i = 0;  i < 11 && i < tamanho; i++){
+    for(int i = 0;  i < 7 && i < tamanho; i++){
         Palavra temp = semelhantes[i];
-        wstring aux = temp.getWord();
-        wcout << i << "." << aux << endl;
+        string aux = temp.getWord();
+        cout << i << "." << aux << endl;
 
     }
 }
