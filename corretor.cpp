@@ -71,19 +71,22 @@ void Corretor::salvarTexto(const string &n){
         throw "Nao foi possivel salvar o arquivo";
 }
 
-//Envia palavra para o dicionario encontrar sugestoes e as exibe
+//Imprime na tela lista de palavras semelhantes
 void Corretor::mostrarSemelhantes(){
     dic.printSemelhantes();
 }
 
+//Efetua a busca por palavras semelhantes a palavra inserida
 void Corretor::buscaSemelhantes(Palavra a){
     dic.buscaSemelhantes(a);
 }
 
+//Importa o dicionario de um arquivo texto
 void Corretor::importarDicionario(){
     dic.importarDicionario();
 }
 
+//Exporta o dicionario para um arquivo texto
 void Corretor::exportarDicionario(){
     dic.exportarDicionario();
 }
@@ -99,6 +102,7 @@ void Corretor::mostrarContexto(Palavra a){
     text.contexto(it);
 }
 
+//Imprime o número de ocorrencias de determinada palavra
 void Corretor::mostrarOcorrencias(Palavra a){
     cout << a.getOcorrencias() << endl;
 }
@@ -109,6 +113,7 @@ void Corretor::carregarTexto(const string &s) {
         throw "Texto invalido, tchau!";
 }
 
+//Checa se a lista de palavras semelhantes está vazia
 bool Corretor::semelhantesVazia(){
     if(dic.semelhantesVazia())
         return true;
